@@ -1,0 +1,23 @@
+quant_stage:
+  quant_modifiers:
+    QuantizationModifier:
+      ignore: ["lm_head"]
+      config_groups:
+        group_0:
+          targets: ["Linear"]
+          weights:
+            num_bits: 4
+            type: float
+            symmetric: true
+            dynamic: false
+            strategy: channel
+            #observer: minmax
+            scale_dtype: float32
+          input_activations:
+            num_bits: 4
+            type: float
+            symmetric: true
+            dynamic: false
+            strategy: tensor
+            #observer: minmax
+            scale_dtype: float32

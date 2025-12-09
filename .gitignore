@@ -1,0 +1,38 @@
+# Entornos virtuales
+env/
+venv/
+.venv/
+
+# Modelos y checkpoints grandes (van a HF)
+models/
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.h5
+
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+.Python
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDEs y editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Entornos
+.env

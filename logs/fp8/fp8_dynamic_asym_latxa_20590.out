@@ -1,0 +1,107 @@
+========================================
+FP8 Quantization dynamic asym - Latxa3.1_8b
+Job: 20590 | Node: localhost
+Started: Fri Oct 10 10:08:05 CEST 2025
+========================================
+
+GPU Information:
+Fri Oct 10 10:08:05 2025       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 530.30.02              Driver Version: 530.30.02    CUDA Version: 12.1     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                  Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf            Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A100-SXM4-80GB           Off| 00000000:07:00.0 Off |                    0 |
+| N/A   64C    P0              424W / 400W|  71600MiB / 81920MiB |     93%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   1  NVIDIA A100-SXM4-80GB           Off| 00000000:0A:00.0 Off |                    0 |
+| N/A   51C    P0              386W / 400W|  71593MiB / 81920MiB |     92%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   2  NVIDIA A100-SXM4-80GB           Off| 00000000:44:00.0 Off |                    0 |
+| N/A   22C    P0               59W / 400W|      0MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   3  NVIDIA A100-SXM4-80GB           Off| 00000000:4A:00.0 Off |                    0 |
+| N/A   53C    P0              379W / 400W|  71593MiB / 81920MiB |     92%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   4  NVIDIA A100-SXM4-80GB           Off| 00000000:84:00.0 Off |                    0 |
+| N/A   58C    P0              ERR! / 400W|  71593MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   5  NVIDIA A100-SXM4-80GB           Off| 00000000:8A:00.0 Off |                    0 |
+| N/A   51C    P0              396W / 400W|  71593MiB / 81920MiB |     92%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   6  NVIDIA A100-SXM4-80GB           Off| 00000000:C0:00.0 Off |                    0 |
+| N/A   49C    P0              334W / 400W|  71449MiB / 81920MiB |     93%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   7  NVIDIA A100-SXM4-80GB           Off| 00000000:C3:00.0 Off |                    0 |
+| N/A   34C    P0               62W / 400W|      0MiB / 81920MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|    0   N/A  N/A      4680      G   /usr/libexec/Xorg                            63MiB |
+|    0   N/A  N/A      4920      G   /usr/bin/gnome-shell                         86MiB |
+|    0   N/A  N/A   2037986      C   ...ct.actor_rollout_generate_sequences    71354MiB |
+|    1   N/A  N/A   2037987      C   ...ct.actor_rollout_generate_sequences    71498MiB |
+|    3   N/A  N/A   2037988      C   ...ct.actor_rollout_generate_sequences    71498MiB |
+|    4   N/A  N/A   2037989      C   ...ct.actor_rollout_generate_sequences    71498MiB |
+|    5   N/A  N/A   2037995      C   ...ct.actor_rollout_generate_sequences    71498MiB |
+|    6   N/A  N/A   2037996      C   ...ct.actor_rollout_generate_sequences    71354MiB |
++---------------------------------------------------------------------------------------+
+
+============================================================
+CUANTIZACIÓN FP8 - Latxa3.1_8b
+============================================================
+
+[1/5] Cargando datos de calibración preprocesados...
+  ✓ Ejemplos cargados: 512
+    - Longitud promedio: 536 caracteres
+    - Longitud mínima: 181 caracteres
+    - Longitud máxima: 1988 caracteres
+
+[2/5] Cargando modelo desde: /proiektuak/ikergaitu-data/azabala106/model_evaluation/trained_models/Latxa3.1_8b_lr1e-5
+  ✓ Modelo cargado
+  Cargando tokenizer...
+  ✓ Tokenizer cargado
+
+[3/5] Tokenizando dataset de calibración...
+  ✓ Dataset tokenizado: 512 ejemplos
+
+[4/5] Iniciando cuantización FP8...
+  Output: /gaueko1/users/mmartin/ptq_exp/models/Latxa3.1_8b_lr1e-5-FP8-calibration-dynamic-asym
+2025-10-10T10:08:28.834288+0200 | reset | INFO - Compression lifecycle reset
+2025-10-10T10:08:28.840320+0200 | _create_default_logger | INFO - Logging all LLM Compressor modifier-level logs to sparse_logs/10-10-2025_10.08.28.log
+2025-10-10T10:08:28.842766+0200 | create_instance | INFO - Loading recipe from file /gaueko1/users/mmartin/ptq_exp/yaml/fp8_calib_dynamic_asym_recipe.yaml
+2025-10-10T10:08:29.026257+0200 | initialize | INFO - Compression lifecycle initialized for 1 modifiers
+2025-10-10T10:08:29.027066+0200 | IndependentPipeline | INFO - Inferred `DataFreePipeline` for `QuantizationModifier`
+2025-10-10T10:08:32.557943+0200 | finalize | INFO - Compression lifecycle finalized for 1 modifiers
+2025-10-10T10:08:35.316457+0200 | get_model_compressor | INFO - skip_sparsity_compression_stats set to True. Skipping sparsity compression statistic calculations. No sparsity compressor will be applied.
+
+[5/5] ¡Cuantización completada!
+============================================================
+✓ Modelo cuantizado guardado en:
+  /gaueko1/users/mmartin/ptq_exp/models/Latxa3.1_8b_lr1e-5-FP8-calibration-dynamic-asym
+============================================================
+
+Para usar el modelo cuantizado con vLLM:
+  vllm serve /gaueko1/users/mmartin/ptq_exp/models/Latxa3.1_8b_lr1e-5-FP8-calibration-dynamic-asym
+
+O cargarlo con transformers:
+  from transformers import AutoModelForCausalLM
+  model = AutoModelForCausalLM.from_pretrained('/gaueko1/users/mmartin/ptq_exp/models/Latxa3.1_8b_lr1e-5-FP8-calibration-dynamic-asym')
+
+========================================
+Finished: Fri Oct 10 10:10:31 CEST 2025
+========================================

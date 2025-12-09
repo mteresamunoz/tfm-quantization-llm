@@ -1,0 +1,6 @@
+Triton.ops importado correctamente.
+CARGANDO MODELO 8BIT
+CARGANDO MODELO 4BIT
+MODELO 8BIT GUARDADO EN:  ['tokenizer.json', 'tokenizer_config.json', 'model.safetensors', 'special_tokens_map.json', 'config.json']
+MODELO 4BIT GUARDADO EN:  ['tokenizer.json', 'tokenizer_config.json', 'model.safetensors', 'special_tokens_map.json', 'config.json']
+TERMINADO

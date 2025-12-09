@@ -1,0 +1,54 @@
+0
+Selected Tasks: ['eus_proficiency']
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 16
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 32
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 16
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 32
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 16
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 16
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 32
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 32
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 32
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 32
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 32
+0
+Selected Tasks: ['eus_reading']
+hf (pretrained=/gaueko1/users/mmartin/ENVIRONMENT/models/latxa-70b-quantized4bit), gen_kwargs: (None), limit: None, num_fewshot: 5, batch_size: 1
+|   Tasks   |Version|Filter|n-shot|Metric|   |Value|   |Stderr|
+|-----------|------:|------|-----:|------|---|----:|---|-----:|
+|eus_reading|      0|none  |     5|acc   |↑  |0.267|±  |0.0236|
+
+0
+Selected Tasks: ['eus_trivia']
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 16
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 32
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 32
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 32
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 32
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 32
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 32
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 64
+hf (pretrained=/gaueko1/users/mmartin/ENVIRONMENT/models/latxa-70b-quantized4bit), gen_kwargs: (None), limit: None, num_fewshot: 5, batch_size: auto:10 (16,32,32,32,32,32,32,64,64,64,64)
+|  Tasks   |Version|Filter|n-shot|Metric|   |Value |   |Stderr|
+|----------|------:|------|-----:|------|---|-----:|---|-----:|
+|eus_trivia|      0|none  |     5|acc   |↑  |0.7172|±  |0.0109|
+

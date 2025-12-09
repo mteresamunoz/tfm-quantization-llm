@@ -1,0 +1,307 @@
+2025-06-13:10:15:25,800 INFO     [lm_eval.evaluator:169] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2025-06-13:10:15:25,801 INFO     [lm_eval.evaluator:206] Initializing hf model, with arguments: {'pretrained': '/proiektuak/ikergaitu-data/azabala106/model_evaluation/trained_models/Latxa3.1_8b_lr1e-5', 'peft': '/gaueko1/users/mmartin/ENVIRONMENT/models/Latxa_8b_loraMIO_quantized8bit'}
+2025-06-13:10:15:26,798 WARNING  [accelerate.utils.other:349] Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+2025-06-13:10:15:26,798 INFO     [lm_eval.models.huggingface:136] Using device 'cuda'
+2025-06-13:10:15:27,133 INFO     [lm_eval.models.huggingface:376] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda'}
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:04,  1.50s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.04s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.27it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.87it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.40it/s]
+Traceback (most recent call last):
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/peft/config.py", line 205, in _get_peft_type
+    config_file = hf_hub_download(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/gaueko1/users/mmartin/ENVIRONMENT/models/Latxa_8b_loraMIO_quantized8bit'. Use `repo_type` argument if needed.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/local/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/__main__.py", line 467, in <module>
+    cli_evaluate()
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/__main__.py", line 388, in cli_evaluate
+    results = evaluator.simple_evaluate(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/utils.py", line 422, in _wrapper
+    return fn(*args, **kwargs)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/evaluator.py", line 209, in simple_evaluate
+    lm = lm_eval.api.registry.get_model(model).create_from_arg_string(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/api/model.py", line 151, in create_from_arg_string
+    return cls(**args, **args2)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/models/huggingface.py", line 191, in __init__
+    self._create_model(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/models/huggingface.py", line 648, in _create_model
+    self._model = PeftModel.from_pretrained(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/peft/peft_model.py", line 453, in from_pretrained
+    PeftConfig._get_peft_type(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/peft/config.py", line 211, in _get_peft_type
+    raise ValueError(f"Can't find '{CONFIG_NAME}' at '{model_id}'")
+ValueError: Can't find 'adapter_config.json' at '/gaueko1/users/mmartin/ENVIRONMENT/models/Latxa_8b_loraMIO_quantized8bit'
+srun: error: localhost: task 0: Exited with exit code 1
+2025-06-13:10:15:34,890 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:15:34,894 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:15:34,897 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:15:34,900 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:15:51,819 INFO     [lm_eval.evaluator:169] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2025-06-13:10:15:51,819 INFO     [lm_eval.evaluator:206] Initializing hf model, with arguments: {'pretrained': '/gaueko1/users/mmartin/ENVIRONMENT/models/Latxa_8b_loraMIO_quantized8bit'}
+2025-06-13:10:15:52,775 WARNING  [accelerate.utils.other:349] Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+2025-06-13:10:15:52,776 INFO     [lm_eval.models.huggingface:136] Using device 'cuda'
+2025-06-13:10:15:53,153 INFO     [lm_eval.models.huggingface:376] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda'}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/local/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/__main__.py", line 467, in <module>
+    cli_evaluate()
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/__main__.py", line 388, in cli_evaluate
+    results = evaluator.simple_evaluate(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/utils.py", line 422, in _wrapper
+    return fn(*args, **kwargs)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/evaluator.py", line 209, in simple_evaluate
+    lm = lm_eval.api.registry.get_model(model).create_from_arg_string(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/api/model.py", line 151, in create_from_arg_string
+    return cls(**args, **args2)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/models/huggingface.py", line 191, in __init__
+    self._create_model(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/models/huggingface.py", line 587, in _create_model
+    self._model = self.AUTO_MODEL_CLASS.from_pretrained(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/models/auto/auto_factory.py", line 573, in from_pretrained
+    return model_class.from_pretrained(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 272, in _wrapper
+    return func(*args, **kwargs)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 4455, in from_pretrained
+    ) = cls._load_pretrained_model(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 4736, in _load_pretrained_model
+    model._initialize_missing_keys(checkpoint_keys, ignore_mismatched_sizes, is_quantized)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 5315, in _initialize_missing_keys
+    self.apply(self._initialize_weights)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1029, in apply
+    module.apply(fn)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1029, in apply
+    module.apply(fn)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1029, in apply
+    module.apply(fn)
+  [Previous line repeated 2 more times]
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1030, in apply
+    fn(self)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 2447, in _initialize_weights
+    self._init_weights(module)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/models/llama/modeling_llama.py", line 407, in _init_weights
+    module.weight.data.normal_(mean=0.0, std=std)
+RuntimeError: "normal_kernel_cpu" not implemented for 'Char'
+srun: error: localhost: task 0: Exited with exit code 1
+2025-06-13:10:16:14,148 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:16:14,151 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:16:14,154 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:16:14,157 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:16:31,539 INFO     [lm_eval.evaluator:169] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2025-06-13:10:16:31,539 INFO     [lm_eval.evaluator:206] Initializing hf model, with arguments: {'pretrained': '/gaueko1/users/mmartin/ENVIRONMENT/models/Latxa_8b_loraMIO_quantized8bit'}
+2025-06-13:10:16:32,455 WARNING  [accelerate.utils.other:349] Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+2025-06-13:10:16:32,455 INFO     [lm_eval.models.huggingface:136] Using device 'cuda'
+2025-06-13:10:16:32,841 INFO     [lm_eval.models.huggingface:376] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda'}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/local/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/__main__.py", line 467, in <module>
+    cli_evaluate()
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/__main__.py", line 388, in cli_evaluate
+    results = evaluator.simple_evaluate(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/utils.py", line 422, in _wrapper
+    return fn(*args, **kwargs)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/evaluator.py", line 209, in simple_evaluate
+    lm = lm_eval.api.registry.get_model(model).create_from_arg_string(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/api/model.py", line 151, in create_from_arg_string
+    return cls(**args, **args2)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/models/huggingface.py", line 191, in __init__
+    self._create_model(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/models/huggingface.py", line 587, in _create_model
+    self._model = self.AUTO_MODEL_CLASS.from_pretrained(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/models/auto/auto_factory.py", line 573, in from_pretrained
+    return model_class.from_pretrained(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 272, in _wrapper
+    return func(*args, **kwargs)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 4455, in from_pretrained
+    ) = cls._load_pretrained_model(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 4736, in _load_pretrained_model
+    model._initialize_missing_keys(checkpoint_keys, ignore_mismatched_sizes, is_quantized)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 5315, in _initialize_missing_keys
+    self.apply(self._initialize_weights)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1029, in apply
+    module.apply(fn)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1029, in apply
+    module.apply(fn)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1029, in apply
+    module.apply(fn)
+  [Previous line repeated 2 more times]
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1030, in apply
+    fn(self)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 2447, in _initialize_weights
+    self._init_weights(module)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/models/llama/modeling_llama.py", line 407, in _init_weights
+    module.weight.data.normal_(mean=0.0, std=std)
+RuntimeError: "normal_kernel_cpu" not implemented for 'Char'
+srun: error: localhost: task 0: Exited with exit code 1
+2025-06-13:10:16:52,286 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:16:52,290 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:16:52,293 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:16:52,295 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:17:09,653 INFO     [lm_eval.evaluator:169] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2025-06-13:10:17:09,653 INFO     [lm_eval.evaluator:206] Initializing hf model, with arguments: {'pretrained': '/gaueko1/users/mmartin/ENVIRONMENT/models/Latxa_8b_loraMIO_quantized8bit'}
+2025-06-13:10:17:10,582 WARNING  [accelerate.utils.other:349] Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+2025-06-13:10:17:10,583 INFO     [lm_eval.models.huggingface:136] Using device 'cuda'
+2025-06-13:10:17:11,076 INFO     [lm_eval.models.huggingface:376] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda'}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/local/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/__main__.py", line 467, in <module>
+    cli_evaluate()
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/__main__.py", line 388, in cli_evaluate
+    results = evaluator.simple_evaluate(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/utils.py", line 422, in _wrapper
+    return fn(*args, **kwargs)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/evaluator.py", line 209, in simple_evaluate
+    lm = lm_eval.api.registry.get_model(model).create_from_arg_string(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/api/model.py", line 151, in create_from_arg_string
+    return cls(**args, **args2)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/models/huggingface.py", line 191, in __init__
+    self._create_model(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/models/huggingface.py", line 587, in _create_model
+    self._model = self.AUTO_MODEL_CLASS.from_pretrained(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/models/auto/auto_factory.py", line 573, in from_pretrained
+    return model_class.from_pretrained(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 272, in _wrapper
+    return func(*args, **kwargs)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 4455, in from_pretrained
+    ) = cls._load_pretrained_model(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 4736, in _load_pretrained_model
+    model._initialize_missing_keys(checkpoint_keys, ignore_mismatched_sizes, is_quantized)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 5315, in _initialize_missing_keys
+    self.apply(self._initialize_weights)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1029, in apply
+    module.apply(fn)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1029, in apply
+    module.apply(fn)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1029, in apply
+    module.apply(fn)
+  [Previous line repeated 2 more times]
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1030, in apply
+    fn(self)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 2447, in _initialize_weights
+    self._init_weights(module)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/models/llama/modeling_llama.py", line 407, in _init_weights
+    module.weight.data.normal_(mean=0.0, std=std)
+RuntimeError: "normal_kernel_cpu" not implemented for 'Char'
+srun: error: localhost: task 0: Exited with exit code 1
+2025-06-13:10:17:33,582 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:17:33,585 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:17:33,588 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:17:33,591 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:17:51,190 INFO     [lm_eval.evaluator:169] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2025-06-13:10:17:51,190 INFO     [lm_eval.evaluator:206] Initializing hf model, with arguments: {'pretrained': '/gaueko1/users/mmartin/ENVIRONMENT/models/Latxa_8b_loraMIO_quantized8bit'}
+2025-06-13:10:17:52,179 WARNING  [accelerate.utils.other:349] Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+2025-06-13:10:17:52,179 INFO     [lm_eval.models.huggingface:136] Using device 'cuda'
+2025-06-13:10:17:52,580 INFO     [lm_eval.models.huggingface:376] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda'}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/local/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/__main__.py", line 467, in <module>
+    cli_evaluate()
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/__main__.py", line 388, in cli_evaluate
+    results = evaluator.simple_evaluate(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/utils.py", line 422, in _wrapper
+    return fn(*args, **kwargs)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/evaluator.py", line 209, in simple_evaluate
+    lm = lm_eval.api.registry.get_model(model).create_from_arg_string(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/api/model.py", line 151, in create_from_arg_string
+    return cls(**args, **args2)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/models/huggingface.py", line 191, in __init__
+    self._create_model(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/models/huggingface.py", line 587, in _create_model
+    self._model = self.AUTO_MODEL_CLASS.from_pretrained(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/models/auto/auto_factory.py", line 573, in from_pretrained
+    return model_class.from_pretrained(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 272, in _wrapper
+    return func(*args, **kwargs)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 4455, in from_pretrained
+    ) = cls._load_pretrained_model(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 4736, in _load_pretrained_model
+    model._initialize_missing_keys(checkpoint_keys, ignore_mismatched_sizes, is_quantized)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 5315, in _initialize_missing_keys
+    self.apply(self._initialize_weights)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1029, in apply
+    module.apply(fn)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1029, in apply
+    module.apply(fn)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1029, in apply
+    module.apply(fn)
+  [Previous line repeated 2 more times]
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1030, in apply
+    fn(self)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 2447, in _initialize_weights
+    self._init_weights(module)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/models/llama/modeling_llama.py", line 407, in _init_weights
+    module.weight.data.normal_(mean=0.0, std=std)
+RuntimeError: "normal_kernel_cpu" not implemented for 'Char'
+srun: error: localhost: task 0: Exited with exit code 1
+2025-06-13:10:18:13,256 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:18:13,260 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:18:13,263 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:18:13,265 INFO     [lm_eval.tasks:460] The tag 'kobest' is already registered as a group, this tag will not be registered. This may affect tasks you want to call.
+2025-06-13:10:18:30,886 INFO     [lm_eval.evaluator:169] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2025-06-13:10:18:30,886 INFO     [lm_eval.evaluator:206] Initializing hf model, with arguments: {'pretrained': '/gaueko1/users/mmartin/ENVIRONMENT/models/Latxa_8b_loraMIO_quantized8bit'}
+2025-06-13:10:18:31,808 WARNING  [accelerate.utils.other:349] Detected kernel version 4.18.0, which is below the recommended minimum of 5.5.0; this can cause the process to hang. It is recommended to upgrade the kernel to the minimum version or higher.
+2025-06-13:10:18:31,808 INFO     [lm_eval.models.huggingface:136] Using device 'cuda'
+2025-06-13:10:18:32,263 INFO     [lm_eval.models.huggingface:376] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda'}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/local/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/__main__.py", line 467, in <module>
+    cli_evaluate()
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/__main__.py", line 388, in cli_evaluate
+    results = evaluator.simple_evaluate(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/utils.py", line 422, in _wrapper
+    return fn(*args, **kwargs)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/evaluator.py", line 209, in simple_evaluate
+    lm = lm_eval.api.registry.get_model(model).create_from_arg_string(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/api/model.py", line 151, in create_from_arg_string
+    return cls(**args, **args2)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/models/huggingface.py", line 191, in __init__
+    self._create_model(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/lm_eval/models/huggingface.py", line 587, in _create_model
+    self._model = self.AUTO_MODEL_CLASS.from_pretrained(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/models/auto/auto_factory.py", line 573, in from_pretrained
+    return model_class.from_pretrained(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 272, in _wrapper
+    return func(*args, **kwargs)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 4455, in from_pretrained
+    ) = cls._load_pretrained_model(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 4736, in _load_pretrained_model
+    model._initialize_missing_keys(checkpoint_keys, ignore_mismatched_sizes, is_quantized)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 5315, in _initialize_missing_keys
+    self.apply(self._initialize_weights)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1029, in apply
+    module.apply(fn)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1029, in apply
+    module.apply(fn)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1029, in apply
+    module.apply(fn)
+  [Previous line repeated 2 more times]
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1030, in apply
+    fn(self)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 2447, in _initialize_weights
+    self._init_weights(module)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/models/llama/modeling_llama.py", line 407, in _init_weights
+    module.weight.data.normal_(mean=0.0, std=std)
+RuntimeError: "normal_kernel_cpu" not implemented for 'Char'
+srun: error: localhost: task 0: Exited with exit code 1

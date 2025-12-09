@@ -1,0 +1,9 @@
+0
+Selected Tasks: ['eus_reading']
+0
+Selected Tasks: ['eus_trivia']
+hf (pretrained=/gaueko1/users/mmartin/ENVIRONMENT/models/latxa-70b-quantized8bit), gen_kwargs: (None), limit: None, num_fewshot: 5, batch_size: 1
+|  Tasks   |Version|Filter|n-shot|Metric|   |Value |   |Stderr|
+|----------|------:|------|-----:|------|---|-----:|---|-----:|
+|eus_trivia|      0|none  |     5|acc   |↑  |0.3026|±  |0.0111|
+

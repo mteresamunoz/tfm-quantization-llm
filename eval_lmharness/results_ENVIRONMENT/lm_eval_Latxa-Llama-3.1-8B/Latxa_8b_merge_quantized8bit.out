@@ -1,0 +1,101 @@
+0
+Selected Tasks: ['belebele_eus_Latn']
+hf (pretrained=/gaueko1/users/mmartin/ENVIRONMENT/models/Latxa_8b_merge_quantized8bit), gen_kwargs: (None), limit: None, num_fewshot: 5, batch_size: 1
+|      Tasks      |Version|Filter|n-shot| Metric |   |Value|   |Stderr|
+|-----------------|------:|------|-----:|--------|---|----:|---|-----:|
+|belebele_eus_Latn|      0|none  |     5|acc     |↑  | 0.68|±  |0.0156|
+|                 |       |none  |     5|acc_norm|↑  | 0.68|±  |0.0156|
+
+0
+Selected Tasks: ['eus_exams_eu']
+hf (pretrained=/gaueko1/users/mmartin/ENVIRONMENT/models/Latxa_8b_merge_quantized8bit), gen_kwargs: (None), limit: None, num_fewshot: 5, batch_size: 1
+|              Tasks               |Version|Filter|n-shot| Metric |   |Value |   |Stderr|
+|----------------------------------|------:|------|-----:|--------|---|-----:|---|-----:|
+|eus_exams_eu_ejadministrari       |      0|none  |     5|acc     |↑  |0.4799|±  |0.0190|
+|                                  |       |none  |     5|acc_norm|↑  |0.4799|±  |0.0190|
+|eus_exams_eu_ejlaguntza           |      0|none  |     5|acc     |↑  |0.5161|±  |0.0224|
+|                                  |       |none  |     5|acc_norm|↑  |0.5161|±  |0.0224|
+|eus_exams_eu_ejlaguntzaile        |      0|none  |     5|acc     |↑  |0.5237|±  |0.0189|
+|                                  |       |none  |     5|acc_norm|↑  |0.5237|±  |0.0189|
+|eus_exams_eu_ejteknikari          |      0|none  |     5|acc     |↑  |0.4993|±  |0.0191|
+|                                  |       |none  |     5|acc_norm|↑  |0.4993|±  |0.0191|
+|eus_exams_eu_opebilbaoeu          |      0|none  |     5|acc     |↑  |0.4365|±  |0.0198|
+|                                  |       |none  |     5|acc_norm|↑  |0.4365|±  |0.0198|
+|eus_exams_eu_opeehuadmineu        |      0|none  |     5|acc     |↑  |0.4970|±  |0.0224|
+|                                  |       |none  |     5|acc_norm|↑  |0.4970|±  |0.0224|
+|eus_exams_eu_opeehuauxeu          |      0|none  |     5|acc     |↑  |0.5489|±  |0.0235|
+|                                  |       |none  |     5|acc_norm|↑  |0.5489|±  |0.0235|
+|eus_exams_eu_opeehubiblioeu       |      0|none  |     5|acc     |↑  |0.4791|±  |0.0204|
+|                                  |       |none  |     5|acc_norm|↑  |0.4791|±  |0.0204|
+|eus_exams_eu_opeehuderechoeu      |      0|none  |     5|acc     |↑  |0.4071|±  |0.0186|
+|                                  |       |none  |     5|acc_norm|↑  |0.4071|±  |0.0186|
+|eus_exams_eu_opeehueconomicaseu   |      0|none  |     5|acc     |↑  |0.4416|±  |0.0265|
+|                                  |       |none  |     5|acc_norm|↑  |0.4416|±  |0.0265|
+|eus_exams_eu_opeehuempresarialeseu|      0|none  |     5|acc     |↑  |0.4464|±  |0.0298|
+|                                  |       |none  |     5|acc_norm|↑  |0.4464|±  |0.0298|
+|eus_exams_eu_opeehusubalternoeu   |      0|none  |     5|acc     |↑  |0.5200|±  |0.0250|
+|                                  |       |none  |     5|acc_norm|↑  |0.5200|±  |0.0250|
+|eus_exams_eu_opeehutecnicoeu      |      0|none  |     5|acc     |↑  |0.4449|±  |0.0188|
+|                                  |       |none  |     5|acc_norm|↑  |0.4449|±  |0.0188|
+|eus_exams_eu_opeehuteknikarib     |      0|none  |     5|acc     |↑  |0.4674|±  |0.0204|
+|                                  |       |none  |     5|acc_norm|↑  |0.4674|±  |0.0204|
+|eus_exams_eu_opegasteizkoudala    |      0|none  |     5|acc     |↑  |0.3833|±  |0.0257|
+|                                  |       |none  |     5|acc_norm|↑  |0.3833|±  |0.0257|
+|eus_exams_eu_opeosakiadmineu      |      0|none  |     5|acc     |↑  |0.3856|±  |0.0318|
+|                                  |       |none  |     5|acc_norm|↑  |0.3856|±  |0.0318|
+|eus_exams_eu_opeosakiauxenfeu     |      0|none  |     5|acc     |↑  |0.3473|±  |0.0370|
+|                                  |       |none  |     5|acc_norm|↑  |0.3473|±  |0.0370|
+|eus_exams_eu_opeosakiauxeu        |      0|none  |     5|acc     |↑  |0.3212|±  |0.0365|
+|                                  |       |none  |     5|acc_norm|↑  |0.3212|±  |0.0365|
+|eus_exams_eu_opeosakiceladoreu    |      0|none  |     5|acc     |↑  |0.3313|±  |0.0370|
+|                                  |       |none  |     5|acc_norm|↑  |0.3313|±  |0.0370|
+|eus_exams_eu_opeosakienfeu        |      0|none  |     5|acc     |↑  |0.3941|±  |0.0253|
+|                                  |       |none  |     5|acc_norm|↑  |0.3941|±  |0.0253|
+|eus_exams_eu_opeosakioperarioeu   |      0|none  |     5|acc     |↑  |0.4122|±  |0.0432|
+|                                  |       |none  |     5|acc_norm|↑  |0.4122|±  |0.0432|
+|eus_exams_eu_opeosakitecnicoeu    |      0|none  |     5|acc     |↑  |0.4112|±  |0.0275|
+|                                  |       |none  |     5|acc_norm|↑  |0.4112|±  |0.0275|
+|eus_exams_eu_opeosakivarioseu     |      0|none  |     5|acc     |↑  |0.3985|±  |0.0301|
+|                                  |       |none  |     5|acc_norm|↑  |0.3985|±  |0.0301|
+|eus_exams_eu_osakidetza1e         |      0|none  |     5|acc     |↑  |0.3524|±  |0.0188|
+|                                  |       |none  |     5|acc_norm|↑  |0.3524|±  |0.0188|
+|eus_exams_eu_osakidetza2e         |      0|none  |     5|acc     |↑  |0.3824|±  |0.0178|
+|                                  |       |none  |     5|acc_norm|↑  |0.3824|±  |0.0178|
+|eus_exams_eu_osakidetza3e         |      0|none  |     5|acc     |↑  |0.4754|±  |0.0213|
+|                                  |       |none  |     5|acc_norm|↑  |0.4754|±  |0.0213|
+|eus_exams_eu_osakidetza5e         |      0|none  |     5|acc     |↑  |0.5169|±  |0.0196|
+|                                  |       |none  |     5|acc_norm|↑  |0.5169|±  |0.0196|
+|eus_exams_eu_osakidetza6e         |      0|none  |     5|acc     |↑  |0.4950|±  |0.0158|
+|                                  |       |none  |     5|acc_norm|↑  |0.4950|±  |0.0158|
+|eus_exams_eu_osakidetza7e         |      0|none  |     5|acc     |↑  |0.4179|±  |0.0106|
+|                                  |       |none  |     5|acc_norm|↑  |0.4179|±  |0.0106|
+
+0
+Selected Tasks: ['eus_proficiency']
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 64
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 64
+hf (pretrained=/gaueko1/users/mmartin/ENVIRONMENT/models/Latxa_8b_merge_quantized8bit), gen_kwargs: (None), limit: None, num_fewshot: 5, batch_size: auto:10 (64,64,64,64,64,64,64,64,64,64,64)
+|     Tasks     |Version|Filter|n-shot|Metric|   |Value|   |Stderr|
+|---------------|------:|------|-----:|------|---|----:|---|-----:|
+|eus_proficiency|      0|none  |     5|acc   |↑  |0.391|±  |0.0068|
+
+0
+Selected Tasks: ['eus_reading']
+hf (pretrained=/gaueko1/users/mmartin/ENVIRONMENT/models/Latxa_8b_merge_quantized8bit), gen_kwargs: (None), limit: None, num_fewshot: 5, batch_size: 1
+|   Tasks   |Version|Filter|n-shot|Metric|   |Value |   |Stderr|
+|-----------|------:|------|-----:|------|---|-----:|---|-----:|
+|eus_reading|      0|none  |     5|acc   |↑  |0.4631|±  |0.0266|
+
+0
+Selected Tasks: ['eus_trivia']
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 64
+Passed argument batch_size = auto:10.0. Detecting largest batch size
+Determined largest batch size: 64
+hf (pretrained=/gaueko1/users/mmartin/ENVIRONMENT/models/Latxa_8b_merge_quantized8bit), gen_kwargs: (None), limit: None, num_fewshot: 5, batch_size: auto:10 (64,64,64,64,64,64,64,64,64,64,64)
+|  Tasks   |Version|Filter|n-shot|Metric|   |Value |   |Stderr|
+|----------|------:|------|-----:|------|---|-----:|---|-----:|
+|eus_trivia|      0|none  |     5|acc   |↑  |0.5102|±  |0.0121|
+

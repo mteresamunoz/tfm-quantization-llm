@@ -1,0 +1,15 @@
+quant_stage:
+  quant_modifiers:
+    GPTQModifier:
+      ignore: ["lm_head"]
+      config_groups:
+        group_0:
+          targets: ["Linear"]
+          weights:
+            num_bits: 4
+            type: int
+            symmetric: true
+            strategy: group
+            group_size: 128
+          input_activations: null
+          output_activations: null

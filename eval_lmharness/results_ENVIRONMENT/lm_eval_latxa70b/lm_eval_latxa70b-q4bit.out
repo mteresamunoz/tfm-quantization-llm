@@ -1,0 +1,10 @@
+0
+Selected Tasks: ['belebele_eus_Latn']
+hf (pretrained=/gaueko1/users/mmartin/ENVIRONMENT/models/latxa-70b-quantized4bit), gen_kwargs: (None), limit: None, num_fewshot: 5, batch_size: 1
+|      Tasks      |Version|Filter|n-shot| Metric |   |Value |   |Stderr|
+|-----------------|------:|------|-----:|--------|---|-----:|---|-----:|
+|belebele_eus_Latn|      0|none  |     5|acc     |↑  |0.8367|±  |0.0123|
+|                 |       |none  |     5|acc_norm|↑  |0.8367|±  |0.0123|
+
+0
+Selected Tasks: ['eus_exams_eu']

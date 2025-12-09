@@ -1,0 +1,6 @@
+quant_stage:
+  quant_modifiers:
+    AWQModifier:
+      ignore: [lm_head]
+      scheme: W4A16_ASYM
+      targets: [Linear]

@@ -1,0 +1,19 @@
+modelo cargado
+tokenizer cargado
+dataset cargado
+{'loss': 1.0327, 'grad_norm': 1.017196536064148, 'learning_rate': 0.00044450364783998685, 'epoch': 1.0}
+{'eval_loss': 0.9576514959335327, 'eval_runtime': 788.6935, 'eval_samples_per_second': 13.744, 'eval_steps_per_second': 3.436, 'epoch': 1.0}
+{'loss': 0.8901, 'grad_norm': 1.3924683332443237, 'learning_rate': 0.00033338798262152634, 'epoch': 2.0}
+{'eval_loss': 0.9182345271110535, 'eval_runtime': 782.204, 'eval_samples_per_second': 13.858, 'eval_steps_per_second': 3.465, 'epoch': 2.0}
+{'loss': 0.7865, 'grad_norm': 2.01519513130188, 'learning_rate': 0.00022227231740306583, 'epoch': 3.0}
+{'eval_loss': 0.9088389873504639, 'eval_runtime': 779.4257, 'eval_samples_per_second': 13.908, 'eval_steps_per_second': 3.477, 'epoch': 3.0}
+{'loss': 0.6854, 'grad_norm': 1.4586291313171387, 'learning_rate': 0.0001111566521846053, 'epoch': 4.0}
+{'eval_loss': 0.9210543036460876, 'eval_runtime': 784.4313, 'eval_samples_per_second': 13.819, 'eval_steps_per_second': 3.455, 'epoch': 4.0}
+{'loss': 0.5856, 'grad_norm': 1.3480746746063232, 'learning_rate': 4.098696614476597e-08, 'epoch': 5.0}
+{'eval_loss': 0.9564253091812134, 'eval_runtime': 784.7242, 'eval_samples_per_second': 13.814, 'eval_steps_per_second': 3.453, 'epoch': 5.0}
+{'train_runtime': 193681.5318, 'train_samples_per_second': 2.239, 'train_steps_per_second': 0.07, 'train_loss': 0.7960700473764294, 'epoch': 5.0}
+entrenado
+Eval results: {'eval_loss': 0.9088389873504639, 'eval_runtime': 786.7724, 'eval_samples_per_second': 13.778, 'eval_steps_per_second': 3.444, 'epoch': 5.0}
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mqlora-8b-8bit[0m at: [34mhttps://wandb.ai/maytemuma-upv-ehu/qlora-8b-8bit/runs/ovvlab1k[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250529_101832-ovvlab1k/logs[0m
