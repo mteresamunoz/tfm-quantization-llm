@@ -1,0 +1,4 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+Compressing model: 0it [00:00, ?it/s]Compressing model: 1it [00:01,  1.04s/it]Compressing model: 72it [00:01, 86.46it/s]Compressing model: 134it [00:01, 164.73it/s]Compressing model: 192it [00:01, 236.36it/s]Compressing model: 224it [00:01, 159.49it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.60s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.43s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.46s/it]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.

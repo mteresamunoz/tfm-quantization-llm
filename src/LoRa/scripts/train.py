@@ -1,13 +1,27 @@
 # INITIAL IMPORTS
+#para medir VRAM en entrenamiento
+import time
+import subprocess
 import numpy as np
 import torch
-from peft import LoraConfig, prepare_model_for_kbit_training, get_peft_model
+from peft import LoraConfig, get_peft_model
 from transformers import TrainingArguments, AutoTokenizer, AutoModelForCausalLM, EarlyStoppingCallback
 from trl import SFTTrainer
 import argparse
 import wandb
 from load_dataset import *
 import os
+
+def log_nvidia_smi(tag=""):
+    try:
+        out = subprocess.check_output([
+            "nvidia-smi",
+            "--query-gpu=timestamp,index,name,memory.total,memory.used,memory.free,utilization.gpu",
+            "--format=csv,noheader,nounits"
+        ]).decode("utf-8").strip()
+        print(f"[nvidia-smi]{tag} {out}")
+    except Exception as e:
+        print(f"[nvidia-smi]{tag} error: {e}")
 
 
 def train_formatting_function(data):
@@ -71,7 +85,7 @@ if __name__ == "__main__":
 
     # Inicializar wandb
     os.environ["WANDB_API_KEY"] = "9dfaae00b45401110e0e0024724781315433b031"
-    wandb.init(project="lora-llama3_8b", name="llama3_8b_instruct")
+    wandb.init(project="lora-fp8-latxa3.1_8b", name="latxa3.1_8b-lora-fp8")
 
     # Variables
     model_chk = args.model
@@ -124,9 +138,9 @@ if __name__ == "__main__":
     tokenizer.padding_side = "right"
     print("✓ Tokenizer loaded")
 
-    # Preparar modelo para k-bit training
-    print("\n[3/6] Preparing model for training...")
-    model = prepare_model_for_kbit_training(model)
+    # Preparar modelo para k-bit training (quitar si no es para bnb)
+    #print("\n[3/6] Preparing model for training...")
+    #model = prepare_model_for_kbit_training(model)
 
     # Configurar LoRA
     peft_config = LoraConfig(
@@ -177,7 +191,7 @@ if __name__ == "__main__":
         lr_scheduler_type="cosine",
         warmup_ratio=0.05,
         bf16=True,
-        optim="paged_adamw_8bit",
+        optim="adamw_torch",
         report_to="wandb",
         dataloader_num_workers=4,
         dataloader_pin_memory=True,
@@ -204,6 +218,37 @@ if __name__ == "__main__":
     print(f"  Steps per epoch: ~{steps_per_epoch:,}")
     print(f"  Total steps: ~{total_steps:,}")
     print(f"  Estimated time: 6-8 hours")
+
+    # --------------------------------------------------
+    # MEDICIÓN DE VRAM Y TIEMPO EN UN MINI-STEP DE TRAIN
+    # --------------------------------------------------
+    device = torch.device("cuda:0")
+    torch.cuda.empty_cache()
+    torch.cuda.reset_peak_memory_stats(device)  # resetea contador de pico [web:25][web:51]
+    log_nvidia_smi(tag="[before_warmup]")
+
+    # Coger un solo batch representativo del DataLoader interno
+    train_dataloader = trainer.get_train_dataloader()
+    first_batch = next(iter(train_dataloader))
+
+    model.train()
+    start = time.time()
+    # forward + loss
+    outputs = model(
+        input_ids=first_batch["input_ids"].to(device),
+        attention_mask=first_batch["attention_mask"].to(device),
+        labels=first_batch["input_ids"].to(device),
+    )
+    loss = outputs.loss
+    loss.backward()
+    # OJO: no llamamos optimizer.step() aquí para no interferir mucho con el Trainer
+
+    elapsed = time.time() - start
+    peak_bytes = torch.cuda.max_memory_allocated(device)  # pico desde el reset [web:25][web:56]
+    peak_gb = peak_bytes / 1024**3
+
+    print(f"[METRICS][warmup_step] time={elapsed:.3f}s, peak_vram={peak_gb:.2f}GB")
+    log_nvidia_smi(tag="[after_warmup]")
 
     # Entrenar
     print("\n[6/6] Starting training...")

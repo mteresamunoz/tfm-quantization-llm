@@ -1,0 +1,4 @@
+WARNING: Ignoring invalid distribution -orch (/gaueko1/users/mmartin/qloraTrain/lib/python3.9/site-packages)
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [02:14<06:42, 134.29s/it]Loading checkpoint shards:  50%|█████     | 2/4 [05:38<05:51, 175.59s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [08:44<03:00, 180.03s/it]Loading checkpoint shards: 100%|██████████| 4/4 [09:35<00:00, 129.24s/it]Loading checkpoint shards: 100%|██████████| 4/4 [09:35<00:00, 143.87s/it]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.

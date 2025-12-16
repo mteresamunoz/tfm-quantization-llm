@@ -16,15 +16,15 @@ from llmcompressor import oneshot
 #en la carpeta de yaml
 
 # Ruta a tu modelo
-model_path = "/proiektuak/ikergaitu-data/azabala106/model_evaluation/trained_models/Latxa3.1_8b_lr1e-5"
-output_dir = "/gaueko1/users/mmartin/ptq_exp/models/Latxa3.1_8b_lr1e-5-FP8-calibration-dynamic-asym"
+model_path = "/gaueko1/users/mmartin/qloraTrain/merge/models/Latxa3.1_8b_fusionado"
+output_dir = "/gaueko1/users/mmartin/tfm-quantization-llm/models/PostQuant/FP8/Latxa3.1_8b_lr1e-5--LoRaMIO-FP8-calibration-dynamic-asym"
 
 # Parámetros de calibración
 NUM_CALIBRATION_SAMPLES = 512
 MAX_SEQUENCE_LENGTH = 512
 
 print("=" * 60)
-print("CUANTIZACIÓN FP8 - Latxa3.1_8b")
+print("CUANTIZACIÓN FP8 - Latxa3.1_8b loRA MIO - CALIBRACIÓN DINÁMICA ASIMÉTRICA")
 print("=" * 60)
 
 # ============================================

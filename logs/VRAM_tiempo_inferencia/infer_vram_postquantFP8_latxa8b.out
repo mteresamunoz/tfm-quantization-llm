@@ -1,0 +1,65 @@
+========================================
+Inference VRAM/latency measurement
+Job ID: 13574
+Node: localhost
+Started: Tue Dec 16 13:07:44 CET 2025
+========================================
+
+Environment Check:
+Python 3.9.7
+compressed-tensors       0.12.1
+peft                     0.12.0
+torch                    2.5.1
+transformers             4.50.3
+trl                      0.10.1
+
+GPU Information (initial):
+Tue Dec 16 13:07:47 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.82.07              Driver Version: 580.82.07      CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla V100-PCIE-32GB           Off |   00000000:48:00.0 Off |                    0 |
+| N/A   36C    P0             35W /  250W |       0MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   1  Tesla V100-PCIE-32GB           Off |   00000000:89:00.0 Off |                    0 |
+| N/A   32C    P0             36W /  250W |       0MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   2  Tesla V100-PCIE-32GB           Off |   00000000:C1:00.0 Off |                    0 |
+| N/A   34C    P0             36W /  250W |       0MiB /  32768MiB |      1%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+Running inference measurement...
+================================================================================
+MODEL: /gaueko1/users/mmartin/tfm-quantization-llm/models/PostQuant/FP8/Latxa3.1_8b_lr1e-5--LoRaMIO-FP8-calibration-dynamic-asym
+PROMPT (truncated): Kaixo, azaldu zer da LoRA euskaraz laburki....
+max_new_tokens=128, batch_size=1
+================================================================================
+[nvidia-smi][before_infer] 2025/12/16 13:09:22.581, 0, Tesla V100-PCIE-32GB, 32768, 8984, 23511, 0
+2025/12/16 13:09:22.581, 1, Tesla V100-PCIE-32GB, 32768, 0, 32495, 0
+2025/12/16 13:09:22.581, 2, Tesla V100-PCIE-32GB, 32768, 0, 32495, 0
+[nvidia-smi][after_infer] 2025/12/16 13:10:29.453, 0, Tesla V100-PCIE-32GB, 32768, 20390, 12105, 81
+2025/12/16 13:10:29.453, 1, Tesla V100-PCIE-32GB, 32768, 0, 32495, 0
+2025/12/16 13:10:29.453, 2, Tesla V100-PCIE-32GB, 32768, 0, 32495, 0
+[METRICS] inference_time_sec=66.8004
+[METRICS] peak_vram_gb=15.4785
+================================================================================
+
+========================================
+Finished with exit code: 0
+Finished: Tue Dec 16 13:10:30 CET 2025
+========================================

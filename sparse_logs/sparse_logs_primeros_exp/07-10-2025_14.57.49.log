@@ -1,0 +1,3 @@
+2025-10-07 14:57:49.366 | INFO     | llmcompressor.metrics.logger:_create_default_logger:357 - Logging all LLM Compressor modifier-level logs to sparse_logs/07-10-2025_14.57.49.log
+2025-10-07 14:57:49.483 | DEBUG    | llmcompressor.core.lifecycle:initialize:92 - Initializing compression lifecycle
+2025-10-07 14:57:49.592 | INFO     | llmcompressor.recipe.recipe:create_instance:140 - Loading recipe from file /gaueko1/users/mmartin/ptq_exp/yaml/gptq_w4a16_recipe.yaml

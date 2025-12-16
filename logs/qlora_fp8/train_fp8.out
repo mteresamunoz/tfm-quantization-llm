@@ -1,0 +1,64 @@
+Tue Dec 16 11:28:08 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.82.07              Driver Version: 580.82.07      CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla V100-PCIE-32GB           Off |   00000000:48:00.0 Off |                    0 |
+| N/A   36C    P0             36W /  250W |       0MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   1  Tesla V100-PCIE-32GB           Off |   00000000:89:00.0 Off |                    0 |
+| N/A   33C    P0             37W /  250W |       0MiB /  32768MiB |      1%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   2  Tesla V100-PCIE-32GB           Off |   00000000:C1:00.0 Off |                    0 |
+| N/A   35C    P0             36W /  250W |       0MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+============================================================
+TRAINING CONFIGURATION
+============================================================
+Model: /gaueko1/users/mmartin/ptq_exp/models/Latxa3.1_8b_lr1e-5-FP8-calibration-dynamic-asym
+Dataset: /gaueko1/users/mmartin/tfm-quantization-llm/data/openhermes_2eu.json
+Learning rate: 0.0005
+Epochs: 5
+Max seq length: 512
+Weight decay: 0.01
+Save path: /gaueko1/users/mmartin/tfm-quantization-llm/models/qLoRa/FP8/
+============================================================
+
+[1/6] Loading model...
+✓ Model loaded
+
+[2/6] Loading tokenizer...
+✓ Tokenizer loaded
+✓ LoRA configured
+  Trainable params: 23,068,672 (0.29%)
+
+[4/6] Loading dataset...
+✓ Dataset loaded
+  Train samples: 86,722
+  Dev samples: 10,840
+
+[5/6] Setting up trainer...
+✓ Trainer configured
+  Steps per epoch: ~2,710
+  Total steps: ~13,550
+  Estimated time: 6-8 hours
+[nvidia-smi][before_warmup] 2025/12/16 11:29:13.983, 0, Tesla V100-PCIE-32GB, 32768, 9006, 23489, 0
+2025/12/16 11:29:13.983, 1, Tesla V100-PCIE-32GB, 32768, 0, 32495, 0
+2025/12/16 11:29:13.983, 2, Tesla V100-PCIE-32GB, 32768, 0, 32495, 0
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mlatxa3.1_8b-lora-fp8[0m at: [34mhttps://wandb.ai/maytemuma-upv-ehu/lora-fp8-latxa3.1_8b/runs/wuzxsnah[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20251216_112819-wuzxsnah/logs[0m

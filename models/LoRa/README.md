@@ -1,5 +1,5 @@
 ---
-base_model: /proiektuak/ikergaitu-data/azabala106/model_evaluation/trained_models/Latxa3.1_8b_lr1e-5
+#base_model: /proiektuak/ikergaitu-data/azabala106/model_evaluation/trained_models/Latxa3.1_8b_lr1e-5
 library_name: peft
 ---
 

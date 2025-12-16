@@ -1,0 +1,32 @@
+2025-10-06 17:14:02.730 | INFO     | llmcompressor.metrics.logger:_create_default_logger:357 - Logging all LLM Compressor modifier-level logs to sparse_logs/06-10-2025_17.14.02.log
+2025-10-06 17:14:02.731 | DEBUG    | llmcompressor.core.lifecycle:initialize:92 - Initializing compression lifecycle
+2025-10-06 17:14:02.732 | DEBUG    | llmcompressor.recipe.recipe:create_instance:132 - Could not initialize recipe as a file path or zoo stub, attempting to process as a string.
+2025-10-06 17:14:02.733 | DEBUG    | llmcompressor.recipe.recipe:create_instance:136 - Input string: 
+stages:
+  quant_stage:
+    quant_modifiers:
+      QuantizationModifier:
+        ignore: ["lm_head"]
+        quant_dtype: fp8
+        scheme: symmetric
+        config_groups:
+          group_0:
+            weights:
+              num_bits: 8
+              type: float
+              strategy: tensor
+              dynamic: false
+              symmetric: true
+            input_activations:
+              num_bits: 8
+              type: float
+              strategy: tensor
+              dynamic: false
+              symmetric: true
+            targets: ["Linear"]
+
+2025-10-06 17:14:03.105 | INFO     | llmcompressor.core.lifecycle:initialize:110 - Compression lifecycle initialized for 0 modifiers
+2025-10-06 17:14:03.105 | DEBUG    | llmcompressor.core.lifecycle:finalize:134 - Finalizing compression lifecycle
+2025-10-06 17:14:03.105 | INFO     | llmcompressor.core.lifecycle:finalize:144 - Compression lifecycle finalized for 0 modifiers
+2025-10-06 17:14:05.828 | INFO     | llmcompressor.transformers.compression.compressed_tensors_utils:get_model_compressor:193 - skip_sparsity_compression_stats set to True. Skipping sparsity compression statistic calculations. No sparsity compressor will be applied.
+2025-10-06 17:16:51.934 | DEBUG    | llmcompressor.transformers.utils.helpers:infer_recipe_from_model_path:105 - No recipe found in the model_path: /proiektuak/ikergaitu-data/azabala106/model_evaluation/trained_models/Latxa3.1_8b_lr1e-5

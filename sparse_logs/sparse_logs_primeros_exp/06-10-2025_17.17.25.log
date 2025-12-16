@@ -1,0 +1,35 @@
+2025-10-06 17:17:25.130 | INFO     | llmcompressor.metrics.logger:_create_default_logger:357 - Logging all LLM Compressor modifier-level logs to sparse_logs/06-10-2025_17.17.25.log
+2025-10-06 17:17:25.132 | DEBUG    | llmcompressor.core.lifecycle:initialize:92 - Initializing compression lifecycle
+2025-10-06 17:17:25.132 | DEBUG    | llmcompressor.recipe.recipe:create_instance:132 - Could not initialize recipe as a file path or zoo stub, attempting to process as a string.
+2025-10-06 17:17:25.133 | DEBUG    | llmcompressor.recipe.recipe:create_instance:136 - Input string: 
+quant_stage:
+    quant_modifiers:
+        QuantizationModifier:
+            ignore: ["lm_head"]
+            config_groups:
+                group_0:
+                    weights:
+                        num_bits: 8
+                        type: float
+                        strategy: channel
+                        dynamic: false
+                        symmetric: true
+                    input_activations:
+                        num_bits: 8
+                        type: float
+                        strategy: token
+                        dynamic: true  # ← Cuantización DINÁMICA
+                        symmetric: true
+                    targets: ["Linear"]
+
+2025-10-06 17:17:25.702 | DEBUG    | llmcompressor.core.lifecycle:initialize:105 - Initialized modifier: config_groups={'group_0': QuantizationScheme(targets=['Linear'], weights=QuantizationArgs(num_bits=8, type='float', symmetric=True, group_size=None, strategy='channel', block_structure=None, dynamic=False, actorder=None, observer='minmax', observer_kwargs={}), input_activations=QuantizationArgs(num_bits=8, type='float', symmetric=True, group_size=None, strategy='token', block_structure=None, dynamic=True, actorder=None, observer=None, observer_kwargs={}), output_activations=None, format=None)} targets=['Linear'] ignore=['lm_head'] scheme=None kv_cache_scheme=None index=None group='quant' start=None end=None update=None initialized_=True finalized_=False started_=False ended_=False
+2025-10-06 17:17:25.702 | INFO     | llmcompressor.core.lifecycle:initialize:110 - Compression lifecycle initialized for 1 modifiers
+2025-10-06 17:17:25.702 | INFO     | llmcompressor.pipelines.independent.pipeline:IndependentPipeline:43 - Inferred `DataFreePipeline` for `QuantizationModifier`
+2025-10-06 17:17:30.092 | DEBUG    | llmcompressor.core.lifecycle:event:195 - Handling event: EventType.CALIBRATION_EPOCH_START
+2025-10-06 17:17:33.594 | DEBUG    | llmcompressor.core.lifecycle:event:205 - Updated event with modifier: config_groups={'group_0': QuantizationScheme(targets=['Linear'], weights=QuantizationArgs(num_bits=8, type='float', symmetric=True, group_size=None, strategy='channel', block_structure=None, dynamic=False, actorder=None, observer='minmax', observer_kwargs={}), input_activations=QuantizationArgs(num_bits=8, type='float', symmetric=True, group_size=None, strategy='token', block_structure=None, dynamic=True, actorder=None, observer=None, observer_kwargs={}), output_activations=None, format=None)} targets=['Linear'] ignore=['lm_head'] scheme=None kv_cache_scheme=None index=None group='quant' start=None end=None update=None initialized_=True finalized_=False started_=True ended_=False
+2025-10-06 17:17:33.594 | DEBUG    | llmcompressor.core.lifecycle:event:195 - Handling event: EventType.CALIBRATION_EPOCH_END
+2025-10-06 17:17:33.600 | DEBUG    | llmcompressor.core.lifecycle:event:205 - Updated event with modifier: config_groups={'group_0': QuantizationScheme(targets=['Linear'], weights=QuantizationArgs(num_bits=8, type='float', symmetric=True, group_size=None, strategy='channel', block_structure=None, dynamic=False, actorder=None, observer='minmax', observer_kwargs={}), input_activations=QuantizationArgs(num_bits=8, type='float', symmetric=True, group_size=None, strategy='token', block_structure=None, dynamic=True, actorder=None, observer=None, observer_kwargs={}), output_activations=None, format=None)} targets=['Linear'] ignore=['lm_head'] scheme=None kv_cache_scheme=None index=None group='quant' start=None end=None update=None initialized_=True finalized_=False started_=True ended_=True
+2025-10-06 17:17:33.601 | DEBUG    | llmcompressor.core.lifecycle:finalize:134 - Finalizing compression lifecycle
+2025-10-06 17:17:33.601 | DEBUG    | llmcompressor.core.lifecycle:finalize:138 - Finalized modifier: config_groups={'group_0': QuantizationScheme(targets=['Linear'], weights=QuantizationArgs(num_bits=8, type='float', symmetric=True, group_size=None, strategy='channel', block_structure=None, dynamic=False, actorder=None, observer='minmax', observer_kwargs={}), input_activations=QuantizationArgs(num_bits=8, type='float', symmetric=True, group_size=None, strategy='token', block_structure=None, dynamic=True, actorder=None, observer=None, observer_kwargs={}), output_activations=None, format=None)} targets=['Linear'] ignore=['lm_head'] scheme=None kv_cache_scheme=None index=None group='quant' start=None end=None update=None initialized_=True finalized_=None started_=True ended_=True
+2025-10-06 17:17:33.601 | INFO     | llmcompressor.core.lifecycle:finalize:144 - Compression lifecycle finalized for 1 modifiers
+2025-10-06 17:17:34.716 | INFO     | llmcompressor.transformers.compression.compressed_tensors_utils:get_model_compressor:193 - skip_sparsity_compression_stats set to True. Skipping sparsity compression statistic calculations. No sparsity compressor will be applied.

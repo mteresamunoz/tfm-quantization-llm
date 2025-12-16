@@ -2,6 +2,8 @@
 env/
 venv/
 .venv/
+hf/
+wandb/
 
 # Modelos y checkpoints grandes (van a HF)
 models/

@@ -1,0 +1,80 @@
+========================================
+FP8 Quantization dynamic asym - Latxa3.1_8b LoRA MIO
+Job: 13573 | Node: localhost
+Started: Tue Dec 16 13:00:48 CET 2025
+========================================
+
+GPU Information:
+Tue Dec 16 13:00:50 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.82.07              Driver Version: 580.82.07      CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla V100-PCIE-32GB           Off |   00000000:48:00.0 Off |                    0 |
+| N/A   36C    P0             35W /  250W |       0MiB /  32768MiB |      1%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   1  Tesla V100-PCIE-32GB           Off |   00000000:89:00.0 Off |                    0 |
+| N/A   34C    P0             37W /  250W |       0MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   2  Tesla V100-PCIE-32GB           Off |   00000000:C1:00.0 Off |                    0 |
+| N/A   36C    P0             37W /  250W |       0MiB /  32768MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+============================================================
+CUANTIZACIÓN FP8 - Latxa3.1_8b loRA MIO - CALIBRACIÓN DINÁMICA ASIMÉTRICA
+============================================================
+
+[1/5] Cargando datos de calibración preprocesados...
+  ✓ Ejemplos cargados: 512
+    - Longitud promedio: 536 caracteres
+    - Longitud mínima: 181 caracteres
+    - Longitud máxima: 1988 caracteres
+
+[2/5] Cargando modelo desde: /gaueko1/users/mmartin/qloraTrain/merge/models/Latxa3.1_8b_fusionado
+  ✓ Modelo cargado
+  Cargando tokenizer...
+  ✓ Tokenizer cargado
+
+[3/5] Tokenizando dataset de calibración...
+  ✓ Dataset tokenizado: 512 ejemplos
+
+[4/5] Iniciando cuantización FP8...
+  Output: /gaueko1/users/mmartin/tfm-quantization-llm/models/PostQuant/FP8/Latxa3.1_8b_lr1e-5--LoRaMIO-FP8-calibration-dynamic-asym
+2025-12-16T13:03:31.000581+0100 | reset | INFO - Compression lifecycle reset
+2025-12-16T13:03:31.008449+0100 | _create_default_logger | INFO - Logging all LLM Compressor modifier-level logs to sparse_logs/16-12-2025_13.03.31.log
+2025-12-16T13:03:31.010151+0100 | create_instance | INFO - Loading recipe from file /gaueko1/users/mmartin/ptq_exp/yaml/fp8_calib_dynamic_asym_recipe.yaml
+2025-12-16T13:03:31.170336+0100 | initialize | INFO - Compression lifecycle initialized for 1 modifiers
+2025-12-16T13:03:31.170575+0100 | IndependentPipeline | INFO - Inferred `DataFreePipeline` for `QuantizationModifier`
+2025-12-16T13:03:47.629214+0100 | finalize | INFO - Compression lifecycle finalized for 1 modifiers
+2025-12-16T13:03:57.214408+0100 | get_model_compressor | INFO - skip_sparsity_compression_stats set to True. Skipping sparsity compression statistic calculations. No sparsity compressor will be applied.
+
+[5/5] ¡Cuantización completada!
+============================================================
+✓ Modelo cuantizado guardado en:
+  /gaueko1/users/mmartin/tfm-quantization-llm/models/PostQuant/FP8/Latxa3.1_8b_lr1e-5--LoRaMIO-FP8-calibration-dynamic-asym
+============================================================
+
+Para usar el modelo cuantizado con vLLM:
+  vllm serve /gaueko1/users/mmartin/tfm-quantization-llm/models/PostQuant/FP8/Latxa3.1_8b_lr1e-5--LoRaMIO-FP8-calibration-dynamic-asym
+
+O cargarlo con transformers:
+  from transformers import AutoModelForCausalLM
+  model = AutoModelForCausalLM.from_pretrained('/gaueko1/users/mmartin/tfm-quantization-llm/models/PostQuant/FP8/Latxa3.1_8b_lr1e-5--LoRaMIO-FP8-calibration-dynamic-asym')
+
+========================================
+Finished: Tue Dec 16 13:05:55 CET 2025
+========================================

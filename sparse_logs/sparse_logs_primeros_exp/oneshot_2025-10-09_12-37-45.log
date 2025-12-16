@@ -1,0 +1,31 @@
+2025-10-09 12:37:45.945 | DEBUG    | llmcompressor.core.lifecycle:reset:59 - Resetting compression lifecycle
+2025-10-09 12:37:45.945 | INFO     | llmcompressor.core.lifecycle:reset:71 - Compression lifecycle reset
+2025-10-09 12:37:45.946 | DEBUG    | llmcompressor.core.state:update:182 - Updating state with provided parameters: {'model': LlamaForCausalLM(
+  (model): LlamaModel(
+    (embed_tokens): Embedding(128256, 4096)
+    (layers): ModuleList(
+      (0-31): 32 x LlamaDecoderLayer(
+        (self_attn): LlamaAttention(
+          (q_proj): Linear(in_features=4096, out_features=4096, bias=False)
+          (k_proj): Linear(in_features=4096, out_features=1024, bias=False)
+          (v_proj): Linear(in_features=4096, out_features=1024, bias=False)
+          (o_proj): Linear(in_features=4096, out_features=4096, bias=False)
+        )
+        (mlp): LlamaMLP(
+          (gate_proj): Linear(in_features=4096, out_features=14336, bias=False)
+          (up_proj): Linear(in_features=4096, out_features=14336, bias=False)
+          (down_proj): Linear(in_features=14336, out_features=4096, bias=False)
+          (act_fn): SiLUActivation()
+        )
+        (input_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+        (post_attention_layernorm): LlamaRMSNorm((4096,), eps=1e-05)
+      )
+    )
+    (norm): LlamaRMSNorm((4096,), eps=1e-05)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=4096, out_features=128256, bias=False)
+), 'teacher_model': None, 'optimizer': None, 'attach_optim_callbacks': True, 'train_data': None, 'val_data': None, 'test_data': None, 'calib_data': <torch.utils.data.dataloader.DataLoader object at 0x7fede14fc0d0>, 'copy_data': True, 'start': -1, 'steps_per_epoch': None, 'batches_per_step': None, 'loggers': None, 'model_log_cadence': None, 'kwargs': {}}
+2025-10-09 12:37:45.951 | INFO     | llmcompressor.metrics.logger:_create_default_logger:357 - Logging all LLM Compressor modifier-level logs to sparse_logs/09-10-2025_12.37.45.log
+2025-10-09 12:37:45.952 | DEBUG    | llmcompressor.core.lifecycle:initialize:92 - Initializing compression lifecycle
+2025-10-09 12:37:45.954 | INFO     | llmcompressor.recipe.recipe:create_instance:140 - Loading recipe from file /gaueko1/users/mmartin/ptq_exp/yaml/awq_w8a16_asymetric_recipe.yaml
