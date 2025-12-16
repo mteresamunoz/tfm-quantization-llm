@@ -84,7 +84,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Inicializar wandb
-    os.environ["WANDB_API_KEY"] = "9dfaae00b45401110e0e0024724781315433b031"
+    os.environ["WANDB_API_KEY"] = "YOUR-APY-KEY"
     wandb.init(project="lora-fp8-latxa3.1_8b", name="latxa3.1_8b-lora-fp8")
 
     # Variables
