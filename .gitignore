@@ -38,3 +38,10 @@ Thumbs.db
 
 # Entornos
 .env
+
+.bash_history
+.bashrc
+.esd_auth
+.gitconfig
+.bash_history
+.Xauthority
