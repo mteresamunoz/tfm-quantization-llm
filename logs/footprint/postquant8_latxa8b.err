@@ -1,0 +1,29 @@
+Traceback (most recent call last):
+  File "/gaueko1/users/mmartin/tfm-quantization-llm/src/footprint/codeCarbon_inference.py", line 93, in <module>
+    main()
+  File "/gaueko1/users/mmartin/tfm-quantization-llm/src/footprint/codeCarbon_inference.py", line 36, in main
+    model = AutoModelForCausalLM.from_pretrained(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/models/auto/auto_factory.py", line 573, in from_pretrained
+    return model_class.from_pretrained(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 272, in _wrapper
+    return func(*args, **kwargs)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 4455, in from_pretrained
+    ) = cls._load_pretrained_model(
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 4736, in _load_pretrained_model
+    model._initialize_missing_keys(checkpoint_keys, ignore_mismatched_sizes, is_quantized)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 5315, in _initialize_missing_keys
+    self.apply(self._initialize_weights)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1029, in apply
+    module.apply(fn)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1029, in apply
+    module.apply(fn)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1029, in apply
+    module.apply(fn)
+  [Previous line repeated 2 more times]
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1030, in apply
+    fn(self)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/modeling_utils.py", line 2447, in _initialize_weights
+    self._init_weights(module)
+  File "/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/transformers/models/llama/modeling_llama.py", line 407, in _init_weights
+    module.weight.data.normal_(mean=0.0, std=std)
+RuntimeError: "normal_kernel_cpu" not implemented for 'Char'

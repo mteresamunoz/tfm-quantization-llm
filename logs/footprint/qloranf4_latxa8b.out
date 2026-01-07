@@ -1,0 +1,67 @@
+Measuring footprint for: /gaueko1/users/mmartin/tfm-quantization-llm/models/qLoRa/NF4/best_model
+Fri Dec 19 11:01:22 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-80GB          Off |   00000000:07:00.0 Off |                    0 |
+| N/A   28C    P0             61W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-SXM4-80GB          Off |   00000000:0A:00.0 Off |                    0 |
+| N/A   25C    P0             59W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A100-SXM4-80GB          Off |   00000000:44:00.0 Off |                    0 |
+| N/A   25C    P0             59W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A100-SXM4-80GB          Off |   00000000:4A:00.0 Off |                    0 |
+| N/A   54C    P0            317W /  400W |   20933MiB /  81920MiB |     94%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   4  NVIDIA A100-SXM4-80GB          Off |   00000000:84:00.0 Off |                    0 |
+| N/A   27C    P0             61W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   5  NVIDIA A100-SXM4-80GB          Off |   00000000:8A:00.0 Off |                    0 |
+| N/A   26C    P0             59W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   6  NVIDIA A100-SXM4-80GB          Off |   00000000:C0:00.0 Off |                    0 |
+| N/A   24C    P0             57W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   7  NVIDIA A100-SXM4-80GB          Off |   00000000:C3:00.0 Off |                    0 |
+| N/A   27C    P0             60W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    3   N/A  N/A         1911881      C   python                                20798MiB |
++-----------------------------------------------------------------------------------------+
+============================================================
+Inference footprint measurement
+============================================================
+Model: /gaueko1/users/mmartin/tfm-quantization-llm/models/qLoRa/NF4/best_model
+Device: cuda
+Prompt: Kaixo, azaldu zer da LoRA euskaraz laburki.
+max_new_tokens: 128
+============================================================
+
+=== RESULTS ===
+[METRICS] inference_time_sec=5.796
+[METRICS] emissions_kg=0.000105
+[METRICS] emissions_g_per_query=0.105
+
+Generated output (truncated):
+ Eta zer da LoRA eta zer egiten du?
+
+LoRaWAN haririk gabeko sare bat da, gauzen Interneteko aplikazioetarako diseinatua. LoRaWANek LoRa teknologia erabiltzen du, haririk gabeko maiztasun baxuko seinale estuak erabiltzen dituen komunikazio protokoloa, distantzia luzeetan seinaleak transmititzeko. LoR

@@ -1,0 +1,75 @@
+Measuring footprint for: /gaueko1/users/mmartin/qloraTrain/qlora-latxa-8b-4bit/models/bs24maxSeq512/best_model
+Wed Dec 17 12:27:00 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-80GB          Off |   00000000:07:00.0 Off |                    0 |
+| N/A   31C    P0            148W /  400W |   15989MiB /  81920MiB |     44%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-SXM4-80GB          Off |   00000000:0A:00.0 Off |                    0 |
+| N/A   27C    P0             80W /  400W |       0MiB /  81920MiB |     11%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A100-SXM4-80GB          Off |   00000000:44:00.0 Off |                    0 |
+| N/A   29C    P0            100W /  400W |   76151MiB /  81920MiB |     35%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A100-SXM4-80GB          Off |   00000000:4A:00.0 Off |                    0 |
+| N/A   41C    P0            205W /  400W |   33385MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   4  NVIDIA A100-SXM4-80GB          Off |   00000000:84:00.0 Off |                    0 |
+| N/A   64C    P0            378W /  400W |   30723MiB /  81920MiB |    100%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   5  NVIDIA A100-SXM4-80GB          Off |   00000000:8A:00.0 Off |                    0 |
+| N/A   34C    P0             84W /  400W |   33385MiB /  81920MiB |     28%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   6  NVIDIA A100-SXM4-80GB          Off |   00000000:C0:00.0 Off |                    0 |
+| N/A   28C    P0             66W /  400W |   71939MiB /  81920MiB |     34%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   7  NVIDIA A100-SXM4-80GB          Off |   00000000:C3:00.0 Off |                    0 |
+| N/A   57C    P0            393W /  400W |   15087MiB /  81920MiB |     92%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A         1637181      C   python                                15982MiB |
+|    2   N/A  N/A         1559440      C   python3                               76142MiB |
+|    3   N/A  N/A         1559440      C   python3                               33378MiB |
+|    4   N/A  N/A         1615498      C   python                                30716MiB |
+|    5   N/A  N/A         1559440      C   python3                               33378MiB |
+|    6   N/A  N/A         1559440      C   python3                               71930MiB |
+|    7   N/A  N/A         1619970      C   python                                14952MiB |
++-----------------------------------------------------------------------------------------+
+============================================================
+Inference footprint measurement
+============================================================
+Model: /gaueko1/users/mmartin/qloraTrain/qlora-latxa-8b-4bit/models/bs24maxSeq512/best_model
+Device: cuda
+Prompt: Kaixo, azaldu zer da LoRA euskaraz laburki.
+max_new_tokens: 128
+============================================================
+
+=== RESULTS ===
+[METRICS] inference_time_sec=5.520
+[METRICS] emissions_kg=0.000103
+[METRICS] emissions_g_per_query=0.103
+
+Generated output (truncated):
+ Zer da LoRa?
+
+Kaixo, azaldu zer den LoRa euskaraz laburki. Zer da LoRa?
+
+LoRa (Long Range) haririk gabeko komunikazio teknologia bat da, distantzia luzeetan datuak transmititzeko erabiltzen dena. LoRa sareak erabiltzen ditu, eta horietan, nodo batek beste nodo batzuekin komunikatu daiteke, haririk 

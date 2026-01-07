@@ -1,13 +1,13 @@
 #!/bin/bash
-#SBATCH --job-name=eval_llama3
+#SBATCH --job-name=eval2
 #SBATCH --cpus-per-task=8
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --time=24:00:00
 #SBATCH --mem=80GB
 #SBATCH --gres=gpu:1
-#SBATCH --output=/gaueko1/users/mmartin/tfm-quantization-llm/eval_lmharness/results_FP8/logs/latxa_loraMIO_fp8.out
-#SBATCH --error=/gaueko1/users/mmartin/tfm-quantization-llm/eval_lmharness/results_FP8/logs/latxa_loraMIO_fp8.err
+#SBATCH --output=/gaueko1/users/mmartin/tfm-quantization-llm/eval_lmharness/results_NF4/logs/latxa_qlora_NF4.out
+#SBATCH --error=/gaueko1/users/mmartin/tfm-quantization-llm/eval_lmharness/results_NF4/logs/latxa_qlora_NF4.err
 #SBATCH --mail-type=REQUEUE
 #SBATCH --mail-user=mariateresa.munoz@ehu.eus
 
@@ -29,11 +29,11 @@ for task_name in "${tasks_selected[@]}"; do
     else
         batch_size="auto:10"
     fi
-#si no deja evaluar directamente modelo, pasar pretrained=modelo base,peft=modelo lora o qlora, etc (NO DEJAR ESPACIOS)
+#si no deja evaluar directamente modelo, pasar pretrained=modelo base,peft=modelo lora o qlora, etc (NO DEJAR ESPACIOS), o poner llama o latxa en el nombre
 #/gaueko1/users/mmartin/ENVIRONMENT/models/Latxa_8b_loraMIO_quantized4bit
     srun python3 -m lm_eval \
         --model hf \
-        --model_args pretrained=/gaueko1/users/mmartin/tfm-quantization-llm/models/PostQuant/FP8/Latxa3.1_8b_lr1e-5--LoRaMIO-FP8-calibration-dynamic-asym \
+        --model_args pretrained=/gaueko1/users/mmartin/tfm-quantization-llm/models/qLoRa/NF4/best_model_llama_latxa8b \
         --tasks $task_name \
         --device cuda \
         --output_path ../results/ \

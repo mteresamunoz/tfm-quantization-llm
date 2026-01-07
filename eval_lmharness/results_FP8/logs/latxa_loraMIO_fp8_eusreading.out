@@ -1,0 +1,7 @@
+0
+Selected Tasks: ['eus_reading']
+hf (pretrained=/gaueko1/users/mmartin/tfm-quantization-llm/models/PostQuant/FP8/Latxa3.1_8b_lr1e-5--LoRaMIO-FP8-calibration-dynamic-asym), gen_kwargs: (None), limit: None, num_fewshot: 5, batch_size: 1
+|   Tasks   |Version|Filter|n-shot|Metric|   |Value |   |Stderr|
+|-----------|------:|------|-----:|------|---|-----:|---|-----:|
+|eus_reading|      0|none  |     5|acc   |↑  |0.4688|±  |0.0266|
+

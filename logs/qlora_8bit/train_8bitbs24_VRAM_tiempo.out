@@ -1,0 +1,69 @@
+============================================================
+TRAINING CONFIGURATION (QLoRA 8-bit)
+============================================================
+Model: /proiektuak/ikergaitu-data/azabala106/model_evaluation/trained_models/Latxa3.1_8b_lr1e-5
+Dataset: /gaueko1/users/mmartin/tfm-quantization-llm/data/openhermes_2eu.json
+Learning rate: 0.0005
+Epochs: 5
+Max seq length: 512
+Weight decay: 0.01
+Save path (logs/checkpoints): /gaueko1/users/mmartin/qloraTrain/qlora-latxa-8b-8bit/models/bs24maxSeq512/
+============================================================
+✓ 8-bit base model loaded
+✓ Tokenizer loaded
+✓ LoRA configured on 8-bit model
+  Trainable params: 23,068,672 (0.29%)
+
+[3/6] Loading dataset...
+✓ Dataset loaded
+  Train samples: 86,722
+  Dev samples: 10,840
+
+[4/6] Setting up trainer...
+✓ Trainer configured
+  Steps per epoch: ~2,710
+  Total steps: ~13,550
+[nvidia-smi][before_train_qlora8b] 2025/12/18 11:44:59.270, 0, NVIDIA A100-SXM4-80GB, 81920, 15087, 66256, 100
+2025/12/18 11:44:59.270, 1, NVIDIA A100-SXM4-80GB, 81920, 15969, 65374, 1
+2025/12/18 11:44:59.271, 2, NVIDIA A100-SXM4-80GB, 81920, 15969, 65374, 1
+2025/12/18 11:44:59.272, 3, NVIDIA A100-SXM4-80GB, 81920, 11299, 70044, 29
+2025/12/18 11:44:59.272, 4, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+2025/12/18 11:44:59.273, 5, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+2025/12/18 11:44:59.274, 6, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+2025/12/18 11:44:59.274, 7, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+
+[5/6] Starting QLoRA-8bit training with metrics...
+============================================================
+{'loss': 1.0446, 'grad_norm': 0.3287464380264282, 'learning_rate': 0.0004444444444444444, 'epoch': 1.0}
+{'eval_loss': 0.9588502049446106, 'eval_runtime': 814.2908, 'eval_samples_per_second': 13.312, 'eval_steps_per_second': 3.328, 'epoch': 1.0}
+{'loss': 0.9005, 'grad_norm': 0.3521249294281006, 'learning_rate': 0.0003333333333333333, 'epoch': 2.0}
+{'eval_loss': 0.9202659130096436, 'eval_runtime': 831.1144, 'eval_samples_per_second': 13.043, 'eval_steps_per_second': 3.261, 'epoch': 2.0}
+{'loss': 0.7973, 'grad_norm': 0.3839225769042969, 'learning_rate': 0.0002222222222222222, 'epoch': 3.0}
+{'eval_loss': 0.9090787172317505, 'eval_runtime': 815.6437, 'eval_samples_per_second': 13.29, 'eval_steps_per_second': 3.323, 'epoch': 3.0}
+{'loss': 0.6977, 'grad_norm': 0.4515278935432434, 'learning_rate': 0.0001111111111111111, 'epoch': 4.0}
+{'eval_loss': 0.9210923910140991, 'eval_runtime': 814.7866, 'eval_samples_per_second': 13.304, 'eval_steps_per_second': 3.326, 'epoch': 4.0}
+{'loss': 0.5985, 'grad_norm': 0.4373600482940674, 'learning_rate': 0.0, 'epoch': 5.0}
+{'eval_loss': 0.9519734978675842, 'eval_runtime': 810.535, 'eval_samples_per_second': 13.374, 'eval_steps_per_second': 3.343, 'epoch': 5.0}
+{'train_runtime': 196646.1878, 'train_samples_per_second': 2.205, 'train_steps_per_second': 0.069, 'train_loss': 0.8077300417291282, 'epoch': 5.0}
+============================================================
+✓ QLoRA-8bit training completed
+[METRICS][train] peak_train_vram_gb=15.73
+[METRICS][train] train_time_min=3277.5
+[nvidia-smi][after_train_qlora8b] 2025/12/20 18:22:26.918, 0, NVIDIA A100-SXM4-80GB, 81920, 9561, 71782, 15
+2025/12/20 18:22:26.919, 1, NVIDIA A100-SXM4-80GB, 81920, 9775, 71568, 24
+2025/12/20 18:22:26.920, 2, NVIDIA A100-SXM4-80GB, 81920, 9775, 71568, 28
+2025/12/20 18:22:26.920, 3, NVIDIA A100-SXM4-80GB, 81920, 20933, 60410, 0
+2025/12/20 18:22:26.921, 4, NVIDIA A100-SXM4-80GB, 81920, 9487, 71856, 22
+2025/12/20 18:22:26.922, 5, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+2025/12/20 18:22:26.922, 6, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+2025/12/20 18:22:26.923, 7, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+
+Final evaluation (for logging)...
+Eval results: {'eval_loss': 0.9090787172317505, 'eval_runtime': 815.708, 'eval_samples_per_second': 13.289, 'eval_steps_per_second': 3.322, 'epoch': 4.999769383331027}
+
+============================================================
+QLoRA-8bit TRAINING FINISHED SUCCESSFULLY
+============================================================
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mqlora-8b-8bit-retrain[0m at: [34m[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20251218_114427-ktx5azq0/logs[0m

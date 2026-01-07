@@ -1,0 +1,65 @@
+============================================================
+TRAINING CONFIGURATION (QLoRA PAPER NF4)
+============================================================
+Model: /proiektuak/ikergaitu-data/azabala106/model_evaluation/trained_models/Latxa3.1_8b_lr1e-5
+Dataset: /gaueko1/users/mmartin/tfm-quantization-llm/data/openhermes_2eu.json
+Learning rate: 0.0002
+Epochs: 3
+Max seq length: 512
+Weight decay: 0.01
+Save path (logs/checkpoints): /gaueko1/users/mmartin/tfm-quantization-llm/models/qLoRa/NF4/
+============================================================
+✓ 4-bit NF4 base model loaded (QLoRA Paper)
+✓ Tokenizer loaded
+✓ LoRA PAPER configured (all layers, r=64)
+  Trainable params: 167,772,160 (3.56%)
+
+[3/6] Loading dataset...
+✓ Dataset loaded
+  Train samples: 86,722
+  Dev samples: 10,840
+
+[4/6] Setting up trainer...
+✓ Trainer configured
+  Steps per epoch: ~2,710
+  Total steps: ~8,130
+[nvidia-smi][before_train_qloraNF4] 2025/12/18 12:18:55.366, 0, NVIDIA A100-SXM4-80GB, 81920, 15087, 66256, 100
+2025/12/18 12:18:55.367, 1, NVIDIA A100-SXM4-80GB, 81920, 72563, 8780, 0
+2025/12/18 12:18:55.367, 2, NVIDIA A100-SXM4-80GB, 81920, 15969, 65374, 1
+2025/12/18 12:18:55.368, 3, NVIDIA A100-SXM4-80GB, 81920, 20929, 60414, 92
+2025/12/18 12:18:55.369, 4, NVIDIA A100-SXM4-80GB, 81920, 15969, 65374, 0
+2025/12/18 12:18:55.370, 5, NVIDIA A100-SXM4-80GB, 81920, 12077, 69266, 0
+2025/12/18 12:18:55.370, 6, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+2025/12/18 12:18:55.371, 7, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+
+[5/6] Starting QLoRA-NF4 training with metrics...
+============================================================
+{'loss': 1.0461, 'grad_norm': 0.5018859505653381, 'learning_rate': 0.00014830601092896174, 'epoch': 1.0}
+{'eval_loss': 0.9715203046798706, 'eval_runtime': 294.1665, 'eval_samples_per_second': 36.85, 'eval_steps_per_second': 2.305, 'epoch': 1.0}
+{'loss': 0.8394, 'grad_norm': 0.5069083571434021, 'learning_rate': 7.420765027322405e-05, 'epoch': 2.0}
+{'eval_loss': 0.897331953048706, 'eval_runtime': 294.1954, 'eval_samples_per_second': 36.846, 'eval_steps_per_second': 2.305, 'epoch': 2.0}
+{'loss': 0.684, 'grad_norm': 0.5131290555000305, 'learning_rate': 1.092896174863388e-07, 'epoch': 3.0}
+{'eval_loss': 0.8962788581848145, 'eval_runtime': 293.3188, 'eval_samples_per_second': 36.956, 'eval_steps_per_second': 2.311, 'epoch': 3.0}
+{'train_runtime': 23925.2372, 'train_samples_per_second': 10.874, 'train_steps_per_second': 0.085, 'train_loss': 0.8565022066279498, 'epoch': 3.0}
+============================================================
+✓ QLoRA-NF4 training completed
+[METRICS][train] peak_train_vram_gb=25.41
+[METRICS][train] train_time_min=398.9
+[nvidia-smi][after_train_qloraNF4] 2025/12/18 18:58:00.146, 0, NVIDIA A100-SXM4-80GB, 81920, 15087, 66256, 100
+2025/12/18 18:58:00.147, 1, NVIDIA A100-SXM4-80GB, 81920, 74835, 6508, 100
+2025/12/18 18:58:00.148, 2, NVIDIA A100-SXM4-80GB, 81920, 15969, 65374, 0
+2025/12/18 18:58:00.148, 3, NVIDIA A100-SXM4-80GB, 81920, 20931, 60412, 96
+2025/12/18 18:58:00.149, 4, NVIDIA A100-SXM4-80GB, 81920, 74835, 6508, 100
+2025/12/18 18:58:00.150, 5, NVIDIA A100-SXM4-80GB, 81920, 30619, 50724, 0
+2025/12/18 18:58:00.150, 6, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+2025/12/18 18:58:00.151, 7, NVIDIA A100-SXM4-80GB, 81920, 74835, 6508, 100
+
+Final evaluation (for logging)...
+Eval results: {'eval_loss': 0.8962576985359192, 'eval_runtime': 294.3054, 'eval_samples_per_second': 36.832, 'eval_steps_per_second': 2.304, 'epoch': 3.0}
+
+============================================================
+QLoRA-nf4 TRAINING FINISHED SUCCESSFULLY
+============================================================
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mqlora-8b-8bit-retrain[0m at: [34mhttps://wandb.ai/maytemuma-upv-ehu/qlora-8b-8bit/runs/rxahvxqa[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20251218_121816-rxahvxqa/logs[0m

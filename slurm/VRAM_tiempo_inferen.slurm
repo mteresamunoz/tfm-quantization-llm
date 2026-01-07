@@ -7,8 +7,8 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem=32G                          # RAM; no muy crítico aquí
 #SBATCH --time=02:00:00                    # Tiempo máximo (suele sobrar)
-#SBATCH --output=/gaueko1/users/mmartin/tfm-quantization-llm/logs/VRAM_tiempo_inferencia/infer_vram_postquantFP8_latxa8b.out
-#SBATCH --error=/gaueko1/users/mmartin/tfm-quantization-llm/logs/VRAM_tiempo_inferencia/infer_vram_postquantFP8_latxa8b.err
+#SBATCH --output=/gaueko1/users/mmartin/tfm-quantization-llm/logs/VRAM_tiempo_inferencia/infer_vram_qloranf4_latxa8b.out
+#SBATCH --error=/gaueko1/users/mmartin/tfm-quantization-llm/logs/VRAM_tiempo_inferencia/infer_vram_qloranf4_latxa8b.err
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=mariateresa.munoz@ehu.eus
 
@@ -41,7 +41,7 @@ echo ""
 echo "Running inference measurement..."
 
 python /gaueko1/users/mmartin/tfm-quantization-llm/src/VRAM_y_tiempo_de_inferencia/VRAM_tiempo_infere.py \
-    --model_path "/gaueko1/users/mmartin/tfm-quantization-llm/models/PostQuant/FP8/Latxa3.1_8b_lr1e-5--LoRaMIO-FP8-calibration-dynamic-asym" \
+    --model_path "/gaueko1/users/mmartin/tfm-quantization-llm/models/qLoRa/NF4/best_model" \
     --prompt "Kaixo, azaldu zer da LoRA euskaraz laburki." \
     --max_new_tokens 128 \
     --batch_size 1

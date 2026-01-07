@@ -3,9 +3,15 @@ import time
 import subprocess
 import numpy as np
 import torch
-from peft import LoraConfig, get_peft_model
-from transformers import TrainingArguments, AutoTokenizer, AutoModelForCausalLM, EarlyStoppingCallback
-from trl import SFTTrainer
+from peft import LoraConfig, prepare_model_for_kbit_training, get_peft_model
+from transformers import (
+    TrainingArguments,
+    AutoTokenizer,
+    AutoModelForCausalLM,
+    EarlyStoppingCallback,
+    BitsAndBytesConfig,
+)
+from trl import SFTTrainer, SFTConfig
 import argparse
 import wandb
 from load_dataset import *
@@ -56,23 +62,23 @@ def train_formatting_function(data):
         elif role == "assistant":
             formated_sen += f"Assistant: {content}\n"
         elif role == "system":
-            formated_sen += f"System Message: {content}\n"
+            formated_sen += f"[System Message]: {content}\n"
 
     return {"text": formated_sen}
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dataset_path", type=str, required=True)
-    parser.add_argument("--model", type=str, required=True)
-    parser.add_argument("--model_type", type=str, required=True)
-    parser.add_argument("--lr", type=float, required=True)
-    parser.add_argument("--save_path", type=str, required=True)
+    parser.add_argument("--dataset_path", type=str)
+    parser.add_argument("--model", type=str)
+    parser.add_argument("--model_type", type=str)
+    parser.add_argument("--lr", type=float)
+    parser.add_argument("--save_path", type=str)
     args = parser.parse_args()
 
     # WANDB
     os.environ["WANDB_API_KEY"] = "9dfaae00b45401110e0e0024724781315433b031"
-    wandb.init(project="lora-fp8-latxa3.1_8b", name="latxa3.1_8b-lora-fp8-retrain")
+    wandb.init(project="qlora-8b-8bit", name="qlora-8b-8bit-retrain")
 
     model_chk = args.model
     model_type = args.model_type
@@ -82,14 +88,16 @@ if __name__ == "__main__":
 
     # SEEDS
     torch.manual_seed(42)
-    np.random.seed(42)
+    np.random_seed = np.random.seed(42)
 
-    epochs = 5
+    # HYPERPARAMETERS
+    bs = 24
+    epochs = 3
     max_seq_length = 512
     wd = 0.01
 
     print("=" * 60)
-    print("TRAINING CONFIGURATION")
+    print("TRAINING CONFIGURATION (QLoRA PAPER NF4)")
     print("=" * 60)
     print(f"Model: {model_chk}")
     print(f"Dataset: {dataset_path}")
@@ -97,47 +105,54 @@ if __name__ == "__main__":
     print(f"Epochs: {epochs}")
     print(f"Max seq length: {max_seq_length}")
     print(f"Weight decay: {wd}")
-    print(f"Save path: {save_path}")
+    print(f"Save path (logs/checkpoints): {save_path}")
     print("=" * 60)
 
-    # 1) Cargar modelo
-    print("\n[1/6] Loading model...")
+    # BitsAndBytes config (8-bit)
+    bnb_config = BitsAndBytesConfig(
+        load_in_4bit=True,                           # 4bit (NO 8bit)
+        bnb_4bit_quant_type="nf4",                   # NormalFloat4
+        bnb_4bit_compute_dtype=torch.bfloat16,       # Compute BF16
+        bnb_4bit_use_double_quant=True,              # Double Quantization
+    )
+
+    # 1) Load model in 8-bit
     model = AutoModelForCausalLM.from_pretrained(
         model_chk,
+        quantization_config=bnb_config,
         device_map="auto",
-        use_safetensors=True,
-        torch_dtype=torch.bfloat16,
     )
     model.config.use_cache = False
     model.config.pretraining_tp = 1
     model.gradient_checkpointing_enable()
-    print("✓ Model loaded")
+    print("✓ 4-bit NF4 base model loaded (QLoRA Paper)")
 
     # 2) Tokenizer
-    print("\n[2/6] Loading tokenizer...")
-    tokenizer = AutoTokenizer.from_pretrained(
-        model_chk,
-        trust_remote_code=True,
-    )
+    tokenizer = AutoTokenizer.from_pretrained(model_chk, trust_remote_code=True)
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "right"
     print("✓ Tokenizer loaded")
 
-    # 3) LoRA
+    # 3) Prepare for k-bit training + LoRA
+    model = prepare_model_for_kbit_training(model)
+
     peft_config = LoraConfig(
-        r=16,
-        lora_alpha=16,
+        r=64,
+        lora_alpha=64,
         lora_dropout=0.05,
         bias="none",
         task_type="CAUSAL_LM",
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj"],
+        target_modules=[
+            "q_proj", "k_proj", "v_proj", "o_proj",
+            "gate_proj", "up_proj", "down_proj"  # FFN layers CRÍTICAS
+        ],
     )
 
     model = get_peft_model(model, peft_config)
 
     trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     total_params = sum(p.numel() for p in model.parameters())
-    print("✓ LoRA configured")
+    print("✓ LoRA PAPER configured (all layers, r=64)")
     print(f"  Trainable params: {trainable_params:,} ({100 * trainable_params / total_params:.2f}%)")
 
     # 4) Dataset
@@ -151,30 +166,33 @@ if __name__ == "__main__":
 
     # 5) TrainingArguments + Trainer
     print("\n[4/6] Setting up trainer...")
-    training_args = TrainingArguments(
-        output_dir=save_path,
-        eval_strategy="steps",
-        eval_steps=500,
-        save_strategy="steps",
-        save_steps=500,
-        logging_steps=50,
-        learning_rate=lr,
+    training_args = SFTConfig(
+        output_dir=save_path + "latxa8b_qlora_nf4",
+        dataset_text_field="text",
+        eval_strategy="epoch",
+        save_strategy="epoch",
+        logging_strategy="epoch",
+        learning_rate=2e-4,
         weight_decay=wd,
-        per_device_train_batch_size=8,
-        gradient_accumulation_steps=4,
-        per_device_eval_batch_size=8,
+        per_device_train_batch_size=16,
+        gradient_accumulation_steps=8,
+        per_device_eval_batch_size=16,
         save_total_limit=3,
         load_best_model_at_end=True,
         metric_for_best_model="eval_loss",
         greater_is_better=False,
         num_train_epochs=epochs,
-        lr_scheduler_type="cosine",
-        warmup_ratio=0.05,
+        lr_scheduler_type="linear",
+        warmup_ratio=0.1,
         bf16=True,
-        optim="adamw_torch",
+        optim="paged_adamw_8bit",
+        logging_steps=1,
         report_to="wandb",
+        max_seq_length=max_seq_length,
+        dataset_num_proc=4,
+        packing=False,
         dataloader_num_workers=4,
-        dataloader_pin_memory=True,
+        group_by_length=True,
     )
 
     trainer = SFTTrainer(
@@ -184,14 +202,14 @@ if __name__ == "__main__":
         peft_config=peft_config,
         train_dataset=formated_train,
         eval_dataset=formated_dev,
-        dataset_text_field="text",
-        dataset_num_proc=4,
-        max_seq_length=max_seq_length,
-        callbacks=[EarlyStoppingCallback(early_stopping_patience=3)],
-        packing=False,
+        #dataset_text_field="text",
+        #dataset_num_proc=1,
+        #max_seq_length=max_seq_length,
+        callbacks=[EarlyStoppingCallback(early_stopping_patience=2)],
+        #packing=False,
     )
 
-    steps_per_epoch = len(formated_train) // (8 * 4)
+    steps_per_epoch = len(formated_train) // (4 * 8)
     total_steps = steps_per_epoch * epochs
     print("✓ Trainer configured")
     print(f"  Steps per epoch: ~{steps_per_epoch:,}")
@@ -201,36 +219,31 @@ if __name__ == "__main__":
     device = torch.device("cuda:0")
     torch.cuda.empty_cache()
     torch.cuda.reset_peak_memory_stats(device)
-    log_nvidia_smi(tag="[before_train]")
+    log_nvidia_smi(tag="[before_train_qloraNF4]")
 
-    print("\n[5/6] Starting training with metrics...")
+    print("\n[5/6] Starting QLoRA-NF4 training with metrics...")
     print("=" * 60)
     train_start = time.time()
     train_output = trainer.train()
     train_elapsed = time.time() - train_start
     print("=" * 60)
-    print("✓ Training completed")
+    print("✓ QLoRA-NF4 training completed")
+
+    trainer.save_model(args.save_path + "best_model")
+    tokenizer.save_pretrained(args.save_path + "best_model")
 
     peak_bytes_train = torch.cuda.max_memory_allocated(device)
     peak_gb_train = peak_bytes_train / 1024**3
     print(f"[METRICS][train] peak_train_vram_gb={peak_gb_train:.2f}")
     print(f"[METRICS][train] train_time_min={train_elapsed/60:.1f}")
-    log_nvidia_smi(tag="[after_train]")
+    log_nvidia_smi(tag="[after_train_qloraNF4]")
 
-    # 7) Guardar modelo final
-    #print("\n[6/6] Saving final model...")
-    #final_model_path = os.path.join(save_path, "best_model")
-    #os.makedirs(final_model_path, exist_ok=True)
-    #trainer.save_model(final_model_path)
-    #tokenizer.save_pretrained(final_model_path)
-    #print(f"✓ Model saved to: {final_model_path}")
-
-    # Evaluación final
+    # 7) No guardar modelo de nuevo
     model.config.use_cache = True
-    print("\nFinal evaluation...")
+    print("\nFinal evaluation (for logging)...")
     eval_results = trainer.evaluate()
     print("Eval results:", eval_results)
 
     print("\n" + "=" * 60)
-    print("TRAINING FINISHED SUCCESSFULLY")
+    print("QLoRA-nf4 TRAINING FINISHED SUCCESSFULLY")
     print("=" * 60)

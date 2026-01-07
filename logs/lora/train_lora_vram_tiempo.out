@@ -1,0 +1,257 @@
+Wed Dec 17 11:16:55 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-80GB          Off |   00000000:07:00.0 Off |                    0 |
+| N/A   29C    P0             61W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-SXM4-80GB          Off |   00000000:0A:00.0 Off |                    0 |
+| N/A   26C    P0             59W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A100-SXM4-80GB          Off |   00000000:44:00.0 Off |                    0 |
+| N/A   30C    P0             80W /  400W |   73841MiB /  81920MiB |     30%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A100-SXM4-80GB          Off |   00000000:4A:00.0 Off |                    0 |
+| N/A   37C    P0             72W /  400W |   31075MiB /  81920MiB |      7%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   4  NVIDIA A100-SXM4-80GB          Off |   00000000:84:00.0 Off |                    0 |
+| N/A   31C    P0             62W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   5  NVIDIA A100-SXM4-80GB          Off |   00000000:8A:00.0 Off |                    0 |
+| N/A   35C    P0            245W /  400W |   31075MiB /  81920MiB |     27%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   6  NVIDIA A100-SXM4-80GB          Off |   00000000:C0:00.0 Off |                    0 |
+| N/A   29C    P0             67W /  400W |   69629MiB /  81920MiB |      6%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   7  NVIDIA A100-SXM4-80GB          Off |   00000000:C3:00.0 Off |                    0 |
+| N/A   30C    P0             61W /  400W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    2   N/A  N/A         1559440      C   python3                               73832MiB |
+|    3   N/A  N/A         1559440      C   python3                               31068MiB |
+|    5   N/A  N/A         1559440      C   python3                               31068MiB |
+|    6   N/A  N/A         1559440      C   python3                               69620MiB |
++-----------------------------------------------------------------------------------------+
+============================================================
+TRAINING CONFIGURATION
+============================================================
+Model: /proiektuak/ikergaitu-data/azabala106/model_evaluation/trained_models/Latxa3.1_8b_lr1e-5
+Dataset: /gaueko1/users/mmartin/tfm-quantization-llm/data/openhermes_2eu.json
+Learning rate: 0.0005
+Epochs: 5
+Max seq length: 512
+Weight decay: 0.01
+Save path: /gaueko1/users/mmartin/tfm-quantization-llm/models/LoRa/Latxa3.1_8b_lora_VRAM_tiempo
+============================================================
+
+[1/6] Loading model...
+✓ Model loaded
+
+[2/6] Loading tokenizer...
+✓ Tokenizer loaded
+✓ LoRA configured
+  Trainable params: 23,068,672 (0.29%)
+
+[3/6] Loading dataset...
+✓ Dataset loaded
+  Train samples: 86,722
+  Dev samples: 10,840
+
+[4/6] Setting up trainer...
+✓ Trainer configured
+  Steps per epoch: ~2,710
+  Total steps: ~13,550
+[nvidia-smi][before_train] 2025/12/17 11:21:07.591, 0, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+2025/12/17 11:21:07.592, 1, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+2025/12/17 11:21:07.593, 2, NVIDIA A100-SXM4-80GB, 81920, 73841, 7502, 6
+2025/12/17 11:21:07.593, 3, NVIDIA A100-SXM4-80GB, 81920, 31075, 50268, 43
+2025/12/17 11:21:07.594, 4, NVIDIA A100-SXM4-80GB, 81920, 15905, 65438, 0
+2025/12/17 11:21:07.595, 5, NVIDIA A100-SXM4-80GB, 81920, 31075, 50268, 40
+2025/12/17 11:21:07.596, 6, NVIDIA A100-SXM4-80GB, 81920, 69629, 11714, 31
+2025/12/17 11:21:07.596, 7, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+
+[5/6] Starting training with metrics...
+============================================================
+{'loss': 1.8333, 'grad_norm': 0.78721684217453, 'learning_rate': 3.6135693215339236e-05, 'epoch': 0.02}
+{'loss': 1.2913, 'grad_norm': 0.32117846608161926, 'learning_rate': 7.300884955752213e-05, 'epoch': 0.04}
+{'loss': 1.1948, 'grad_norm': 0.45993679761886597, 'learning_rate': 0.00010988200589970502, 'epoch': 0.06}
+{'loss': 1.116, 'grad_norm': 0.36443838477134705, 'learning_rate': 0.0001467551622418879, 'epoch': 0.07}
+{'loss': 1.0941, 'grad_norm': 0.33703404664993286, 'learning_rate': 0.0001836283185840708, 'epoch': 0.09}
+{'loss': 1.0674, 'grad_norm': 0.2959291934967041, 'learning_rate': 0.0002205014749262537, 'epoch': 0.11}
+{'loss': 1.0532, 'grad_norm': 0.3353462517261505, 'learning_rate': 0.00025737463126843655, 'epoch': 0.13}
+{'loss': 1.0513, 'grad_norm': 0.3695838451385498, 'learning_rate': 0.0002942477876106195, 'epoch': 0.15}
+{'loss': 1.0314, 'grad_norm': 0.2703374922275543, 'learning_rate': 0.00033112094395280233, 'epoch': 0.17}
+{'loss': 1.0358, 'grad_norm': 0.31347349286079407, 'learning_rate': 0.0003679941002949853, 'epoch': 0.18}
+{'eval_loss': 1.0269083976745605, 'eval_runtime': 379.3237, 'eval_samples_per_second': 28.577, 'eval_steps_per_second': 3.572, 'epoch': 0.18}
+{'loss': 1.0244, 'grad_norm': 0.2960248291492462, 'learning_rate': 0.00040486725663716817, 'epoch': 0.2}
+{'loss': 1.0292, 'grad_norm': 0.306265264749527, 'learning_rate': 0.000441740412979351, 'epoch': 0.22}
+{'loss': 1.0187, 'grad_norm': 0.26559579372406006, 'learning_rate': 0.00047861356932153395, 'epoch': 0.24}
+{'loss': 1.011, 'grad_norm': 0.3105109930038452, 'learning_rate': 0.0004999967189110329, 'epoch': 0.26}
+{'loss': 1.0091, 'grad_norm': 0.309177428483963, 'learning_rate': 0.000499962495255999, 'epoch': 0.28}
+{'loss': 1.0027, 'grad_norm': 0.3391837179660797, 'learning_rate': 0.000499891077006435, 'epoch': 0.3}
+{'loss': 1.0101, 'grad_norm': 0.3056279718875885, 'learning_rate': 0.0004997824747894262, 'epoch': 0.31}
+{'loss': 0.9783, 'grad_norm': 0.2929452359676361, 'learning_rate': 0.000499636704765059, 'epoch': 0.33}
+{'loss': 0.9955, 'grad_norm': 0.29962876439094543, 'learning_rate': 0.0004994537886240148, 'epoch': 0.35}
+{'loss': 0.9952, 'grad_norm': 0.2915245294570923, 'learning_rate': 0.0004992337535843439, 'epoch': 0.37}
+{'eval_loss': 0.9876396656036377, 'eval_runtime': 388.859, 'eval_samples_per_second': 27.876, 'eval_steps_per_second': 3.485, 'epoch': 0.37}
+{'loss': 0.9861, 'grad_norm': 0.30235856771469116, 'learning_rate': 0.0004989766323874143, 'epoch': 0.39}
+{'loss': 0.9918, 'grad_norm': 0.29524579644203186, 'learning_rate': 0.0004986824632930405, 'epoch': 0.41}
+{'loss': 0.98, 'grad_norm': 0.3112376928329468, 'learning_rate': 0.0004983512900737898, 'epoch': 0.42}
+{'loss': 0.9754, 'grad_norm': 0.3311309814453125, 'learning_rate': 0.0004979831620084696, 'epoch': 0.44}
+{'loss': 0.9807, 'grad_norm': 0.3145931661128998, 'learning_rate': 0.0004975781338747939, 'epoch': 0.46}
+{'loss': 0.9849, 'grad_norm': 0.36903026700019836, 'learning_rate': 0.000497136265941233, 'epoch': 0.48}
+{'loss': 0.9798, 'grad_norm': 0.2699882388114929, 'learning_rate': 0.0004966576239580453, 'epoch': 0.5}
+{'loss': 0.974, 'grad_norm': 0.283158540725708, 'learning_rate': 0.0004961422791474934, 'epoch': 0.52}
+{'loss': 0.9705, 'grad_norm': 0.32959312200546265, 'learning_rate': 0.0004955903081932463, 'epoch': 0.54}
+{'loss': 0.9684, 'grad_norm': 0.30168694257736206, 'learning_rate': 0.000495001793228969, 'epoch': 0.55}
+{'eval_loss': 0.9663985967636108, 'eval_runtime': 379.1621, 'eval_samples_per_second': 28.589, 'eval_steps_per_second': 3.574, 'epoch': 0.55}
+{'loss': 0.9602, 'grad_norm': 0.2966286540031433, 'learning_rate': 0.0004943768218261007, 'epoch': 0.57}
+{'loss': 0.9714, 'grad_norm': 0.27965840697288513, 'learning_rate': 0.0004937154869808244, 'epoch': 0.59}
+{'loss': 0.9574, 'grad_norm': 0.3159901797771454, 'learning_rate': 0.0004930178871002287, 'epoch': 0.61}
+{'loss': 0.9667, 'grad_norm': 0.295848548412323, 'learning_rate': 0.0004922841259876648, 'epoch': 0.63}
+{'loss': 0.9622, 'grad_norm': 0.33160364627838135, 'learning_rate': 0.0004915143128273006, 'epoch': 0.65}
+{'loss': 0.9593, 'grad_norm': 0.31047481298446655, 'learning_rate': 0.0004907085621678743, 'epoch': 0.66}
+{'loss': 0.9495, 'grad_norm': 0.3137509524822235, 'learning_rate': 0.0004898669939056486, 'epoch': 0.68}
+{'loss': 0.9539, 'grad_norm': 0.34144604206085205, 'learning_rate': 0.0004889897332665711, 'epoch': 0.7}
+{'loss': 0.964, 'grad_norm': 0.30100223422050476, 'learning_rate': 0.00048807691078763975, 'epoch': 0.72}
+{'loss': 0.9518, 'grad_norm': 0.3174798786640167, 'learning_rate': 0.0004871286622974795, 'epoch': 0.74}
+{'eval_loss': 0.9601976275444031, 'eval_runtime': 379.3035, 'eval_samples_per_second': 28.579, 'eval_steps_per_second': 3.572, 'epoch': 0.74}
+{'loss': 0.9495, 'grad_norm': 0.3015093207359314, 'learning_rate': 0.0004861451288961303, 'epoch': 0.76}
+{'loss': 0.9569, 'grad_norm': 0.35583603382110596, 'learning_rate': 0.0004851264569340519, 'epoch': 0.77}
+{'loss': 0.9608, 'grad_norm': 0.2985205352306366, 'learning_rate': 0.0004840727979903464, 'epoch': 0.79}
+{'loss': 0.9489, 'grad_norm': 0.29342934489250183, 'learning_rate': 0.00048298430885020317, 'epoch': 0.81}
+{'loss': 0.9408, 'grad_norm': 0.34732985496520996, 'learning_rate': 0.0004818611514815694, 'epoch': 0.83}
+{'loss': 0.9409, 'grad_norm': 0.3232842981815338, 'learning_rate': 0.000480703493011049, 'epoch': 0.85}
+{'loss': 0.9431, 'grad_norm': 0.33972930908203125, 'learning_rate': 0.0004795115056990339, 'epoch': 0.87}
+{'loss': 0.9379, 'grad_norm': 0.29215008020401, 'learning_rate': 0.00047828536691407183, 'epoch': 0.89}
+{'loss': 0.9316, 'grad_norm': 0.27457764744758606, 'learning_rate': 0.0004770252591064735, 'epoch': 0.9}
+{'loss': 0.9483, 'grad_norm': 0.29160529375076294, 'learning_rate': 0.0004757313697811641, 'epoch': 0.92}
+{'eval_loss': 0.9417391419410706, 'eval_runtime': 379.7531, 'eval_samples_per_second': 28.545, 'eval_steps_per_second': 3.568, 'epoch': 0.92}
+{'loss': 0.9593, 'grad_norm': 0.3002893626689911, 'learning_rate': 0.00047440389146978236, 'epoch': 0.94}
+{'loss': 0.9404, 'grad_norm': 0.31992092728614807, 'learning_rate': 0.00047304302170203153, 'epoch': 0.96}
+{'loss': 0.9502, 'grad_norm': 0.3169199824333191, 'learning_rate': 0.0004716489629762872, 'epoch': 0.98}
+{'loss': 0.9451, 'grad_norm': 0.3160995841026306, 'learning_rate': 0.00047022192272946504, 'epoch': 1.0}
+{'loss': 0.861, 'grad_norm': 0.3303072452545166, 'learning_rate': 0.00046876211330615424, 'epoch': 1.01}
+{'loss': 0.8556, 'grad_norm': 0.34484001994132996, 'learning_rate': 0.00046726975192702024, 'epoch': 1.03}
+{'loss': 0.8565, 'grad_norm': 0.32393550872802734, 'learning_rate': 0.0004657450606564827, 'epoch': 1.05}
+{'loss': 0.8747, 'grad_norm': 0.31498613953590393, 'learning_rate': 0.00046418826636967136, 'epoch': 1.07}
+{'loss': 0.8556, 'grad_norm': 0.33787381649017334, 'learning_rate': 0.0004625996007186676, 'epoch': 1.09}
+{'loss': 0.8641, 'grad_norm': 0.3051670789718628, 'learning_rate': 0.00046097930009803397, 'epoch': 1.11}
+{'eval_loss': 0.9422876834869385, 'eval_runtime': 380.0804, 'eval_samples_per_second': 28.52, 'eval_steps_per_second': 3.565, 'epoch': 1.11}
+{'loss': 0.8655, 'grad_norm': 0.3516874313354492, 'learning_rate': 0.0004593276056096387, 'epoch': 1.13}
+{'loss': 0.8783, 'grad_norm': 0.3616836369037628, 'learning_rate': 0.0004576447630267797, 'epoch': 1.14}
+{'loss': 0.8697, 'grad_norm': 0.3240486979484558, 'learning_rate': 0.000455931022757613, 'epoch': 1.16}
+{'loss': 0.8642, 'grad_norm': 0.31305617094039917, 'learning_rate': 0.00045418663980789203, 'epoch': 1.18}
+{'loss': 0.8679, 'grad_norm': 0.3774515986442566, 'learning_rate': 0.00045241187374302265, 'epoch': 1.2}
+{'loss': 0.8654, 'grad_norm': 0.35446590185165405, 'learning_rate': 0.0004506069886494395, 'epoch': 1.22}
+{'loss': 0.8665, 'grad_norm': 0.3202703297138214, 'learning_rate': 0.00044877225309530985, 'epoch': 1.24}
+{'loss': 0.8754, 'grad_norm': 0.31708794832229614, 'learning_rate': 0.00044690794009057035, 'epoch': 1.25}
+{'loss': 0.8699, 'grad_norm': 0.35445263981819153, 'learning_rate': 0.00044501432704630305, 'epoch': 1.27}
+{'loss': 0.8631, 'grad_norm': 0.3709958493709564, 'learning_rate': 0.0004430916957334565, 'epoch': 1.29}
+{'eval_loss': 0.9341625571250916, 'eval_runtime': 380.0504, 'eval_samples_per_second': 28.523, 'eval_steps_per_second': 3.565, 'epoch': 1.29}
+{'loss': 0.8663, 'grad_norm': 0.3667758107185364, 'learning_rate': 0.00044114033224091796, 'epoch': 1.31}
+{'loss': 0.8751, 'grad_norm': 0.35046640038490295, 'learning_rate': 0.00043916052693294304, 'epoch': 1.33}
+{'loss': 0.8734, 'grad_norm': 0.3278314173221588, 'learning_rate': 0.00043715257440594957, 'epoch': 1.35}
+{'loss': 0.8542, 'grad_norm': 0.33418747782707214, 'learning_rate': 0.0004351167734446813, 'epoch': 1.36}
+{'loss': 0.8688, 'grad_norm': 0.33009204268455505, 'learning_rate': 0.00043305342697774816, 'epoch': 1.38}
+{'loss': 0.8701, 'grad_norm': 0.3476751446723938, 'learning_rate': 0.00043096284203255134, 'epoch': 1.4}
+{'loss': 0.8714, 'grad_norm': 0.3330571949481964, 'learning_rate': 0.00042884532968959606, 'epoch': 1.42}
+{'loss': 0.8614, 'grad_norm': 0.3467024862766266, 'learning_rate': 0.0004267012050362035, 'epoch': 1.44}
+{'loss': 0.8684, 'grad_norm': 0.3175452947616577, 'learning_rate': 0.0004245307871196251, 'epoch': 1.46}
+{'loss': 0.8738, 'grad_norm': 0.34011831879615784, 'learning_rate': 0.00042233439889956866, 'epoch': 1.48}
+{'eval_loss': 0.9266026020050049, 'eval_runtime': 379.577, 'eval_samples_per_second': 28.558, 'eval_steps_per_second': 3.57, 'epoch': 1.48}
+{'loss': 0.867, 'grad_norm': 0.3643777668476105, 'learning_rate': 0.0004201123672001409, 'epoch': 1.49}
+{'loss': 0.8687, 'grad_norm': 0.3374497890472412, 'learning_rate': 0.0004178650226612165, 'epoch': 1.51}
+{'loss': 0.8691, 'grad_norm': 0.32183530926704407, 'learning_rate': 0.0004155926996892384, 'epoch': 1.53}
+{'loss': 0.88, 'grad_norm': 0.3277309238910675, 'learning_rate': 0.0004132957364074578, 'epoch': 1.55}
+{'loss': 0.8819, 'grad_norm': 0.3624327778816223, 'learning_rate': 0.00041097447460562134, 'epoch': 1.57}
+{'loss': 0.88, 'grad_norm': 0.3304549753665924, 'learning_rate': 0.00040862925968911237, 'epoch': 1.59}
+{'loss': 0.8556, 'grad_norm': 0.31566789746284485, 'learning_rate': 0.0004062604406275547, 'epoch': 1.6}
+{'loss': 0.8733, 'grad_norm': 0.3613493740558624, 'learning_rate': 0.0004038683699028853, 'epoch': 1.62}
+{'loss': 0.8617, 'grad_norm': 0.32093340158462524, 'learning_rate': 0.00040145340345690495, 'epoch': 1.64}
+{'loss': 0.8739, 'grad_norm': 0.336217999458313, 'learning_rate': 0.0003990159006383138, 'epoch': 1.66}
+{'eval_loss': 0.9191663861274719, 'eval_runtime': 379.803, 'eval_samples_per_second': 28.541, 'eval_steps_per_second': 3.568, 'epoch': 1.66}
+{'loss': 0.8744, 'grad_norm': 0.3179240822792053, 'learning_rate': 0.0003965562241492401, 'epoch': 1.68}
+{'loss': 0.8601, 'grad_norm': 0.36002811789512634, 'learning_rate': 0.0003940747399912698, 'epoch': 1.7}
+{'loss': 0.8562, 'grad_norm': 0.3332367241382599, 'learning_rate': 0.00039157181741098526, 'epoch': 1.72}
+{'loss': 0.8724, 'grad_norm': 0.3330349922180176, 'learning_rate': 0.000389047828845021, 'epoch': 1.73}
+{'loss': 0.8724, 'grad_norm': 0.31345319747924805, 'learning_rate': 0.00038650314986464517, 'epoch': 1.75}
+{'loss': 0.8758, 'grad_norm': 0.3408418297767639, 'learning_rate': 0.00038393815911987397, 'epoch': 1.77}
+{'loss': 0.8671, 'grad_norm': 0.33640924096107483, 'learning_rate': 0.0003813532382831284, 'epoch': 1.79}
+{'loss': 0.8646, 'grad_norm': 0.3400731086730957, 'learning_rate': 0.00037874877199244115, 'epoch': 1.81}
+{'loss': 0.8683, 'grad_norm': 0.34718742966651917, 'learning_rate': 0.00037612514779422217, 'epoch': 1.83}
+{'loss': 0.8655, 'grad_norm': 0.31785672903060913, 'learning_rate': 0.00037348275608559134, 'epoch': 1.84}
+{'eval_loss': 0.9122166633605957, 'eval_runtime': 378.652, 'eval_samples_per_second': 28.628, 'eval_steps_per_second': 3.578, 'epoch': 1.84}
+{'loss': 0.859, 'grad_norm': 0.37014615535736084, 'learning_rate': 0.0003708219900562874, 'epoch': 1.86}
+{'loss': 0.8614, 'grad_norm': 0.35687705874443054, 'learning_rate': 0.0003681432456301609, 'epoch': 1.88}
+{'loss': 0.8605, 'grad_norm': 0.3208177387714386, 'learning_rate': 0.00036544692140626033, 'epoch': 1.9}
+{'loss': 0.8535, 'grad_norm': 0.345081090927124, 'learning_rate': 0.00036273341859952046, 'epoch': 1.92}
+{'loss': 0.8637, 'grad_norm': 0.34509605169296265, 'learning_rate': 0.00036000314098106126, 'epoch': 1.94}
+{'loss': 0.8576, 'grad_norm': 0.3682931065559387, 'learning_rate': 0.00035725649481810627, 'epoch': 1.96}
+{'loss': 0.8607, 'grad_norm': 0.346333771944046, 'learning_rate': 0.0003544938888135302, 'epoch': 1.97}
+{'loss': 0.8498, 'grad_norm': 0.3593198359012604, 'learning_rate': 0.0003517157340450434, 'epoch': 1.99}
+{'loss': 0.7958, 'grad_norm': 0.36849263310432434, 'learning_rate': 0.00034892244390402285, 'epoch': 2.01}
+{'loss': 0.7357, 'grad_norm': 0.3332306742668152, 'learning_rate': 0.0003461144340339998, 'epoch': 2.03}
+{'eval_loss': 0.923390805721283, 'eval_runtime': 378.9923, 'eval_samples_per_second': 28.602, 'eval_steps_per_second': 3.575, 'epoch': 2.03}
+{'loss': 0.737, 'grad_norm': 0.3705275356769562, 'learning_rate': 0.00034329212226881154, 'epoch': 2.05}
+{'loss': 0.7479, 'grad_norm': 0.365833044052124, 'learning_rate': 0.0003404559285704271, 'epoch': 2.07}
+{'loss': 0.7362, 'grad_norm': 0.39616289734840393, 'learning_rate': 0.0003376062749664574, 'epoch': 2.08}
+{'loss': 0.7459, 'grad_norm': 0.39656391739845276, 'learning_rate': 0.0003347435854873563, 'epoch': 2.1}
+{'loss': 0.7602, 'grad_norm': 0.34037211537361145, 'learning_rate': 0.0003318682861033252, 'epoch': 2.12}
+{'loss': 0.7532, 'grad_norm': 0.4266834557056427, 'learning_rate': 0.0003289808046609282, 'epoch': 2.14}
+{'loss': 0.7396, 'grad_norm': 0.5438219904899597, 'learning_rate': 0.0003260815708194281, 'epoch': 2.16}
+{'loss': 0.746, 'grad_norm': 0.3551478087902069, 'learning_rate': 0.0003231710159868532, 'epoch': 2.18}
+{'loss': 0.7566, 'grad_norm': 0.4324839413166046, 'learning_rate': 0.00032024957325580284, 'epoch': 2.19}
+{'loss': 0.7482, 'grad_norm': 0.3954818844795227, 'learning_rate': 0.00031731767733900364, 'epoch': 2.21}
+{'eval_loss': 0.9241256713867188, 'eval_runtime': 379.2015, 'eval_samples_per_second': 28.586, 'eval_steps_per_second': 3.573, 'epoch': 2.21}
+{'loss': 0.7707, 'grad_norm': 0.3814612030982971, 'learning_rate': 0.00031437576450462333, 'epoch': 2.23}
+{'loss': 0.7595, 'grad_norm': 0.39178866147994995, 'learning_rate': 0.00031142427251135406, 'epoch': 2.25}
+{'loss': 0.7604, 'grad_norm': 0.38482093811035156, 'learning_rate': 0.00030846364054327367, 'epoch': 2.27}
+{'loss': 0.756, 'grad_norm': 0.3586541414260864, 'learning_rate': 0.0003054943091444945, 'epoch': 2.29}
+{'loss': 0.7637, 'grad_norm': 0.4089866578578949, 'learning_rate': 0.0003025167201536104, 'epoch': 2.31}
+{'loss': 0.7572, 'grad_norm': 0.35811787843704224, 'learning_rate': 0.0002995313166379506, 'epoch': 2.32}
+{'loss': 0.7609, 'grad_norm': 0.3732903003692627, 'learning_rate': 0.00029653854282765115, 'epoch': 2.34}
+{'loss': 0.7523, 'grad_norm': 0.3495253324508667, 'learning_rate': 0.00029353884404955305, 'epoch': 2.36}
+{'loss': 0.766, 'grad_norm': 0.37026721239089966, 'learning_rate': 0.0002905326666609375, 'epoch': 2.38}
+{'loss': 0.7546, 'grad_norm': 0.36744752526283264, 'learning_rate': 0.0002875204579831073, 'epoch': 2.4}
+{'eval_loss': 0.9161997437477112, 'eval_runtime': 379.0168, 'eval_samples_per_second': 28.6, 'eval_steps_per_second': 3.575, 'epoch': 2.4}
+{'train_runtime': 28962.0108, 'train_samples_per_second': 14.972, 'train_steps_per_second': 0.468, 'train_loss': 0.9067570172823393, 'epoch': 2.4}
+============================================================
+✓ Training completed
+[METRICS][train] peak_train_vram_gb=22.25
+[METRICS][train] train_time_min=482.7
+[nvidia-smi][after_train] 2025/12/17 19:23:50.199, 0, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+2025/12/17 19:23:50.200, 1, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+2025/12/17 19:23:50.200, 2, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+2025/12/17 19:23:50.201, 3, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+2025/12/17 19:23:50.202, 4, NVIDIA A100-SXM4-80GB, 81920, 30723, 50620, 2
+2025/12/17 19:23:50.202, 5, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+2025/12/17 19:23:50.203, 6, NVIDIA A100-SXM4-80GB, 81920, 0, 81342, 0
+2025/12/17 19:23:50.204, 7, NVIDIA A100-SXM4-80GB, 81920, 15087, 66256, 100
+
+Final evaluation...
+Eval results: {'eval_loss': 0.9122166633605957, 'eval_runtime': 380.7447, 'eval_samples_per_second': 28.471, 'eval_steps_per_second': 3.559, 'epoch': 2.3977492851212987}
+
+============================================================
+TRAINING FINISHED SUCCESSFULLY
+============================================================
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mlatxa3.1_8b-lora-fp8-retrain[0m at: [34mhttps://wandb.ai/maytemuma-upv-ehu/lora-fp8-latxa3.1_8b/runs/5bpnnaxl[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20251217_111804-5bpnnaxl/logs[0m

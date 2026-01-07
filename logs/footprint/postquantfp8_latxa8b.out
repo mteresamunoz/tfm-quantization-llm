@@ -1,0 +1,71 @@
+Measuring footprint for: /gaueko1/users/mmartin/tfm-quantization-llm/models/PostQuant/FP8/Latxa3.1_8b_lr1e-5--LoRaMIO-FP8-calibration-dynamic-asym
+Wed Dec 17 12:30:35 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-80GB          Off |   00000000:07:00.0 Off |                    0 |
+| N/A   29C    P0             82W /  400W |       0MiB /  81920MiB |      9%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-SXM4-80GB          Off |   00000000:0A:00.0 Off |                    0 |
+| N/A   26C    P0             65W /  400W |    6911MiB /  81920MiB |      2%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A100-SXM4-80GB          Off |   00000000:44:00.0 Off |                    0 |
+| N/A   29C    P0             80W /  400W |   76151MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A100-SXM4-80GB          Off |   00000000:4A:00.0 Off |                    0 |
+| N/A   41C    P0             82W /  400W |   33385MiB /  81920MiB |      3%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   4  NVIDIA A100-SXM4-80GB          Off |   00000000:84:00.0 Off |                    0 |
+| N/A   65C    P0            387W /  400W |   30723MiB /  81920MiB |     98%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   5  NVIDIA A100-SXM4-80GB          Off |   00000000:8A:00.0 Off |                    0 |
+| N/A   32C    P0             84W /  400W |   33385MiB /  81920MiB |     43%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   6  NVIDIA A100-SXM4-80GB          Off |   00000000:C0:00.0 Off |                    0 |
+| N/A   28C    P0             66W /  400W |   71939MiB /  81920MiB |     36%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   7  NVIDIA A100-SXM4-80GB          Off |   00000000:C3:00.0 Off |                    0 |
+| N/A   57C    P0            371W /  400W |   15087MiB /  81920MiB |    100%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    1   N/A  N/A         1639228      C   python                                 6904MiB |
+|    2   N/A  N/A         1559440      C   python3                               76142MiB |
+|    3   N/A  N/A         1559440      C   python3                               33378MiB |
+|    4   N/A  N/A         1615498      C   python                                30716MiB |
+|    5   N/A  N/A         1559440      C   python3                               33378MiB |
+|    6   N/A  N/A         1559440      C   python3                               71930MiB |
+|    7   N/A  N/A         1619970      C   python                                14952MiB |
++-----------------------------------------------------------------------------------------+
+============================================================
+Inference footprint measurement
+============================================================
+Model: /gaueko1/users/mmartin/tfm-quantization-llm/models/PostQuant/FP8/Latxa3.1_8b_lr1e-5--LoRaMIO-FP8-calibration-dynamic-asym
+Device: cuda
+Prompt: Kaixo, azaldu zer da LoRA euskaraz laburki.
+max_new_tokens: 128
+============================================================
+
+=== RESULTS ===
+[METRICS] inference_time_sec=39.432
+[METRICS] emissions_kg=0.000903
+[METRICS] emissions_g_per_query=0.903
+
+Generated output (truncated):
+ LoRA hizkuntza-ereduen garapenerako tresna bat da, eta hizkuntza-ereduen garapenerako erabiltzen da. LoRA erabiltzaileei hizkuntza-ereduak azkar eta erraz sortzeko aukera ematen die, eta hizkuntza-ereduak sortzeko erabiltzen da. LoRA erabiltzaileei hizkuntza-ereduak sortzeko aukera ematen die, eta 
