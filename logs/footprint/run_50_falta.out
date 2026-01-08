@@ -1,0 +1,97 @@
+GPU reset unavailable: Insufficient Permissions
+Thu Jan  8 12:20:50 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.105.08             Driver Version: 580.105.08     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-80GB          Off |   00000000:07:00.0 Off |                    0 |
+| N/A   51C    P0            291W /  400W |   74351MiB /  81920MiB |     94%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-SXM4-80GB          Off |   00000000:0A:00.0 Off |                    0 |
+| N/A   26C    P0             65W /  400W |   16249MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA A100-SXM4-80GB          Off |   00000000:44:00.0 Off |                    0 |
+| N/A   26C    P0             65W /  400W |   16249MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA A100-SXM4-80GB          Off |   00000000:4A:00.0 Off |                    0 |
+| N/A   29C    P0             66W /  400W |   32607MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   4  NVIDIA A100-SXM4-80GB          Off |   00000000:84:00.0 Off |                    0 |
+| N/A   28C    P0             68W /  400W |   26375MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   5  NVIDIA A100-SXM4-80GB          Off |   00000000:8A:00.0 Off |                    0 |
+| N/A   26C    P0             66W /  400W |   32607MiB /  81920MiB |      1%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   6  NVIDIA A100-SXM4-80GB          Off |   00000000:C0:00.0 Off |                    0 |
+| N/A   25C    P0             63W /  400W |   15201MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   7  NVIDIA A100-SXM4-80GB          Off |   00000000:C3:00.0 Off |                    0 |
+| N/A   28C    P0             60W /  400W |       4MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A         2999751      C   VLLM::EngineCore                      74344MiB |
+|    1   N/A  N/A         2996404      C   ...vs/llms_updated/bin/python3.1      16242MiB |
+|    2   N/A  N/A         2996403      C   ...vs/llms_updated/bin/python3.1      16242MiB |
+|    3   N/A  N/A         3000834      C   VLLM::EngineCore_TP0                  32600MiB |
+|    4   N/A  N/A         2764632      C   VLLM::EngineCore                      26368MiB |
+|    5   N/A  N/A         3000836      C   VLLM::EngineCore_TP1                  32600MiB |
+|    6   N/A  N/A         2993676      C   ...-luminous-datasets/bin/python      15194MiB |
++-----------------------------------------------------------------------------------------+
+INFERENCE BENCHMARKING START
+Models: 2 | Reps/model: 50
+TFM table: /gaueko1/users/mmartin/tfm-quantization-llm/footprint_metricas/inference_emissions.csv
+CodeCarbon logs: /gaueko1/users/mmartin/tfm-quantization-llm/footprint_metricas/codecarbon
+
+
+============================================================
+[postq8] Inference benchmark
+Path/Repo: maytemuma/lora_quant8_latxa8b
+============================================================
+  Local path: /gaueko1/users/mmartin/tfm-quantization-llm/footprint_metricas/hf_models_cache/postq8
+  Attempt 1 failed: Linear8bitLt has no attribute `base_layer`
+  Attempt 2 failed: Linear8bitLt has no attribute `base_layer`
+[postq8] ERROR: All load attempts failed: Linear8bitLt has no attribute `base_layer`
+Traceback (most recent call last):
+  File "/gaueko1/users/mmartin/tfm-quantization-llm/src/footprint/codeCarbon_inference.py", line 439, in benchmark_model
+    model = _load_model_single_gpu0(local_path)
+  File "/gaueko1/users/mmartin/tfm-quantization-llm/src/footprint/codeCarbon_inference.py", line 210, in _load_model_single_gpu0
+    raise RuntimeError(f"All load attempts failed: {last_err}")
+RuntimeError: All load attempts failed: Linear8bitLt has no attribute `base_layer`
+
+  Memory cleaned
+
+
+============================================================
+[postq4] Inference benchmark
+Path/Repo: maytemuma/lora_quant4_latxa8b
+============================================================
+  Local path: /gaueko1/users/mmartin/tfm-quantization-llm/footprint_metricas/hf_models_cache/postq4
+  Attempt 1 failed: Linear4bit has no attribute `base_layer`
+  Attempt 2 failed: Linear4bit has no attribute `base_layer`
+[postq4] ERROR: All load attempts failed: Linear4bit has no attribute `base_layer`
+Traceback (most recent call last):
+  File "/gaueko1/users/mmartin/tfm-quantization-llm/src/footprint/codeCarbon_inference.py", line 439, in benchmark_model
+    model = _load_model_single_gpu0(local_path)
+  File "/gaueko1/users/mmartin/tfm-quantization-llm/src/footprint/codeCarbon_inference.py", line 210, in _load_model_single_gpu0
+    raise RuntimeError(f"All load attempts failed: {last_err}")
+RuntimeError: All load attempts failed: Linear4bit has no attribute `base_layer`
+
+  Memory cleaned
+
+No results (all failed/skipped).

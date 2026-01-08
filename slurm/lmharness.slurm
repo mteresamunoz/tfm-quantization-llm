@@ -1,13 +1,13 @@
 #!/bin/bash
-#SBATCH --job-name=eval2
+#SBATCH --job-name=qwen_eval
 #SBATCH --cpus-per-task=8
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --time=24:00:00
 #SBATCH --mem=80GB
 #SBATCH --gres=gpu:1
-#SBATCH --output=/gaueko1/users/mmartin/tfm-quantization-llm/eval_lmharness/results_NF4/logs/latxa_qlora_NF4.out
-#SBATCH --error=/gaueko1/users/mmartin/tfm-quantization-llm/eval_lmharness/results_NF4/logs/latxa_qlora_NF4.err
+#SBATCH --output=/gaueko1/users/mmartin/tfm-quantization-llm/eval_lmharness/qwen/base.out
+#SBATCH --error=/gaueko1/users/mmartin/tfm-quantization-llm/eval_lmharness/qwen/base.err
 #SBATCH --mail-type=REQUEUE
 #SBATCH --mail-user=mariateresa.munoz@ehu.eus
 
@@ -33,7 +33,7 @@ for task_name in "${tasks_selected[@]}"; do
 #/gaueko1/users/mmartin/ENVIRONMENT/models/Latxa_8b_loraMIO_quantized4bit
     srun python3 -m lm_eval \
         --model hf \
-        --model_args pretrained=/gaueko1/users/mmartin/tfm-quantization-llm/models/qLoRa/NF4/best_model_llama_latxa8b \
+        --model_args pretrained=Qwen/Qwen3-8B \
         --tasks $task_name \
         --device cuda \
         --output_path ../results/ \

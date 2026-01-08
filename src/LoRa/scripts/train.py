@@ -70,9 +70,9 @@ if __name__ == "__main__":
     parser.add_argument("--save_path", type=str, required=True)
     args = parser.parse_args()
 
-    # Inicializar wandb
+    # WANDB
     os.environ["WANDB_API_KEY"] = "9dfaae00b45401110e0e0024724781315433b031"
-    wandb.init(project="lora-fp8-latxa3.1_8b", name="latxa3.1_8b-lora-fp8")
+    wandb.init(project="lora-fp8-latxa3.1_8b", name="latxa3.1_8b-lora-fp8-retrain")
 
     model_chk = args.model
     model_type = args.model_type
@@ -233,4 +233,4 @@ if __name__ == "__main__":
 
     print("\n" + "=" * 60)
     print("TRAINING FINISHED SUCCESSFULLY")
-    print("="*60)
+    print("=" * 60)
