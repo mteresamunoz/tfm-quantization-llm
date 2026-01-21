@@ -80,7 +80,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # WANDB
-    os.environ["WANDB_API_KEY"] = "9dfaae00b45401110e0e0024724781315433b031"
+    os.environ["WANDB_API_KEY"] = "API_KEY"
     wandb.init(project="qlora-8b-4bit", name="qlora-8b-4bit-retrain")
 
     model_chk = args.model
