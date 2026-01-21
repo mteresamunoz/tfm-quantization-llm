@@ -77,7 +77,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # WANDB
-    os.environ["WANDB_API_KEY"] = "9dfaae00b45401110e0e0024724781315433b031"
+    os.environ["WANDB_API_KEY"] = "API_KEY"
     wandb.init(project="qlora-8b-8bit", name="qlora-8b-8bit-retrain")
 
     model_chk = args.model
@@ -152,7 +152,7 @@ if __name__ == "__main__":
 
     trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     total_params = sum(p.numel() for p in model.parameters())
-    print("✓ LoRA PAPER configured (all layers, r=64)")
+    print("LoRA configured (all layers, r=64)")
     print(f"  Trainable params: {trainable_params:,} ({100 * trainable_params / total_params:.2f}%)")
 
     # 4) Dataset
@@ -227,7 +227,7 @@ if __name__ == "__main__":
     train_output = trainer.train()
     train_elapsed = time.time() - train_start
     print("=" * 60)
-    print("✓ QLoRA-NF4 training completed")
+    print("QLoRA-NF4 training completed")
 
     trainer.save_model(args.save_path + "best_model")
     tokenizer.save_pretrained(args.save_path + "best_model")
@@ -238,7 +238,6 @@ if __name__ == "__main__":
     print(f"[METRICS][train] train_time_min={train_elapsed/60:.1f}")
     log_nvidia_smi(tag="[after_train_qloraNF4]")
 
-    # 7) No guardar modelo de nuevo
     model.config.use_cache = True
     print("\nFinal evaluation (for logging)...")
     eval_results = trainer.evaluate()
