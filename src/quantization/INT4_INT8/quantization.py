@@ -27,8 +27,6 @@ bnb_config_8bit = BitsAndBytesConfig(
 #config para quant en 4bit
 bnb_config_4bit = BitsAndBytesConfig(
     load_in_4bit = True,
-    #llm_int4_threshold=6.0,
-    bnb_4bit_use_double_quant=True,
     bnb_4bit_compute_dtype=torch.float16,
 )
 
