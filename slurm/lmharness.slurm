@@ -21,7 +21,7 @@ tasks_selected=(
     "eus_trivia"
 )
 
-export HF_TOKEN=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
+export HF_TOKEN=YOUR_TOKEN
 
 num_fewshot=5
 for task_name in "${tasks_selected[@]}"; do
