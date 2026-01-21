@@ -71,7 +71,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # WANDB
-    os.environ["WANDB_API_KEY"] = "9dfaae00b45401110e0e0024724781315433b031"
+    os.environ["WANDB_API_KEY"] = "API_KEY"
     wandb.init(project="lora-fp8-qwen3-8b", name="qwen3-8b")
 
     model_chk = args.model
