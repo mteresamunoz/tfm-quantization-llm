@@ -93,7 +93,7 @@ if __name__ == "__main__":
     # HYPERPARAMETERS
     bs = 24
     epochs = 3
-    max_seq_length = 512
+    max_seq_length = 1024
     wd = 0.01
 
     print("=" * 60)
