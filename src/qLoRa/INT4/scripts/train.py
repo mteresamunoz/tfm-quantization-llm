@@ -111,12 +111,10 @@ if __name__ == "__main__":
     print(f"Save path (logs/checkpoints): {save_path}")
     print("=" * 60)
 
-    # BitsAndBytes config (4-bit NF4)
+    # BitsAndBytes config
     bnb_config = BitsAndBytesConfig(
         load_in_4bit=True,
-        bnb_4bit_quant_type="nf4",
         bnb_4bit_compute_dtype=torch.bfloat16,
-        bnb_4bit_use_double_quant=False,
     )
 
     # 1) Load model in 4-bit
