@@ -13,7 +13,7 @@ from transformers import (
 )
 from trl import SFTTrainer, SFTConfig
 import argparse
-#import wandb
+import wandb
 from load_dataset import *
 import os
 
@@ -93,7 +93,7 @@ if __name__ == "__main__":
     # HYPERPARAMETERS
     bs = 24
     epochs = 5
-    max_seq_length = 512
+    max_seq_length = 1024
     wd = 0.01
 
     print("=" * 60)
