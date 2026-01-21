@@ -85,7 +85,7 @@ if __name__ == "__main__":
     np.random.seed(42)
 
     epochs = 5
-    max_seq_length = 512
+    max_seq_length = 1024
     wd = 0.01
 
     print("=" * 60)
