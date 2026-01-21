@@ -14,12 +14,13 @@ import safetensors.torch #pip install safetensors
 #    print(f"Error al importar Triton: {e}")
 #model = "HiTZ/latxa-7b-v1.2" #1.2 --> 28GB
 #model = '/gaueko1/users/mmartin/ENVIRONMENT/latxa70b/Latxa-Llama-3.1-70B-Instruct-exp_2_101' #--> 263G 
-model = '/gaueko1/users/mmartin/qloraTrain/merge/models/Latxa3.1_8b_fusionado'
+model = '/gaueko1/users/mmartin/tfm-quantization-llm/models/merge/gemma'
 
 #config cuant 8-bit
 bnb_config_8bit = BitsAndBytesConfig(
     load_in_8bit=True,  #Cuant 4bit (cambiar a load_in_8bit para 8bit)
     llm_int8_threshold=6.0,
+    llm_int8_has_fp16_weight=False
     #load_in_8bit_fp32_cpu_offload=True, #mueve algunas capas a CPU (por si no cabe en la GPU(xirimiri))
 )
 
@@ -60,16 +61,17 @@ modelq4 = AutoModelForCausalLM.from_pretrained(
 )
 
 
-path_modelq8bit = "/gaueko1/users/mmartin/ENVIRONMENT/models/Latxa_8b_merge_quantized8bit"
+path_modelq8bit = "/gaueko1/users/mmartin/tfm-quantization-llm/models/PostQuant/INT8/gemma"
 #crea carpeta si no existe
 os.makedirs(path_modelq8bit, exist_ok=True)
 #guardar modelo con safetensors
 #guarda pesos cuantizados y parametros entrenados pytorch
-state_dict_8bit = modelq8.state_dict()
-safetensors.torch.save_file(state_dict_8bit, os.path.join(path_modelq8bit, "model.safetensors"))
+#state_dict_8bit = modelq8.state_dict()
+safetensors.torch.save_model(modelq8, os.path.join(path_modelq8bit, "model.safetensors"))
 #guardar config y tokenizador
+#modelq8.config.save_pretrained(path_modelq8bit)
+modelq8.save_pretrained(path_modelq8bit, safe_serialization=True)
 modelq8.config.save_pretrained(path_modelq8bit)
-#modelq.save_pretrained(path)
 #print(tokenizer)
 tokenizer.save_pretrained(path_modelq8bit)
 #tokenizer.config.save_pretrained(path_modelq8bit)
@@ -83,15 +85,15 @@ print("MODELO 8BIT GUARDADO EN: ", os.listdir(path_modelq8bit))
 
 
 
-path_modelq4bit = "/gaueko1/users/mmartin/ENVIRONMENT/models/Latxa_8b_merge_quantized4bit"
+path_modelq4bit = "/gaueko1/users/mmartin/tfm-quantization-llm/models/PostQuant/INT4/gemma"
 os.makedirs(path_modelq4bit, exist_ok=True)
 #guardar modelo con safetensors
 #guarda pesos cuantizados y parametros entrenados pytorch
-state_dict_4bit = modelq4.state_dict()
-safetensors.torch.save_file(state_dict_4bit, os.path.join(path_modelq4bit, "model.safetensors"))
+#state_dict_4bit = modelq4.state_dict()
+safetensors.torch.save_model(modelq4, os.path.join(path_modelq4bit, "model.safetensors"))
 #guardar config y tokenizador
+modelq4.save_pretrained(path_modelq4bit, safe_serialization=True)
 modelq4.config.save_pretrained(path_modelq4bit)
-#modelq.save_pretrained(path)
 tokenizer.save_pretrained(path_modelq4bit)
 #tokenizer.config.save_pretrained(path_modelq4bit)
 

@@ -1,5 +1,10 @@
-# Entornos virtuales
+# Carpetas excluidas del repositorio
+data/
+logs/
+eval_lmharness/
 env/
+
+# Entornos virtuales
 venv/
 .venv/
 hf/
@@ -13,6 +18,8 @@ models/
 *.safetensors
 *.h5
 
+# Archivos de log
+*.log
 
 # Python
 __pycache__/
@@ -31,7 +38,6 @@ __pycache__/
 *.swp
 *.swo
 
-
 # OS generated
 .DS_Store
 Thumbs.db
@@ -39,9 +45,9 @@ Thumbs.db
 # Entornos
 .env
 
+# Archivos de configuración personal
 .bash_history
 .bashrc
 .esd_auth
 .gitconfig
-.bash_history
 .Xauthority

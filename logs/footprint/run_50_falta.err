@@ -1,9 +1,0 @@
-/gaueko1/users/mmartin/ENVIRONMENT/lib/python3.9/site-packages/huggingface_hub/file_download.py:979: UserWarning: `local_dir_use_symlinks` parameter is deprecated and will be ignored. The process to download files to a local folder has been updated and do not rely on symlinks anymore. You only need to pass a destination folder as`local_dir`.
-For more details, check out https://huggingface.co/docs/huggingface_hub/main/en/guides/download#download-files-to-local-folder.
-  warnings.warn(
-Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files:  20%|██        | 1/5 [00:00<00:03,  1.20it/s]do_ypcall: clnt_call: RPC: Timed out
-Fetching 5 files:  40%|████      | 2/5 [02:02<03:36, 72.19s/it]Fetching 5 files: 100%|██████████| 5/5 [02:02<00:00, 24.59s/it]
-`torch_dtype` is deprecated! Use `dtype` instead!
-`torch_dtype` is deprecated! Use `dtype` instead!
-Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files:  20%|██        | 1/5 [00:00<00:02,  1.44it/s]do_ypcall: clnt_call: RPC: Timed out
-Fetching 5 files:  40%|████      | 2/5 [01:18<02:18, 46.00s/it]Fetching 5 files: 100%|██████████| 5/5 [01:18<00:00, 15.68s/it]

@@ -1,9 +1,9 @@
 from transformers import AutoModelForCausalLM, BitsAndBytesConfig, AutoTokenizer
 import os
 import torch
-import safetensors.torch
+import safetensors.torch 
 
-model = '/proiektuak/ikergaitu-data/azabala106/model_evaluation/trained_models/Latxa3.1_8b_lr1e-5'
+model = '/gaueko1/users/mmartin/tfm-quantization-llm/models/merge/gemma'
 
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
@@ -30,12 +30,15 @@ model = AutoModelForCausalLM.from_pretrained(
     trust_remote_code=True
 )
 
-path_model = "/gaueko1/users/mmartin/tfm-quantization-llm/models/quantization/NF4"
+path_model = "/gaueko1/users/mmartin/tfm-quantization-llm/models/PostQuant/NF4/gemma"
 #crea carpeta si no existe
 os.makedirs(path_model, exist_ok=True)
 
-state_dict_8bit = model.state_dict()
-safetensors.torch.save_file(state_dict_8bit, os.path.join(path_model, "model.safetensors"))
+#para gemma se guarda todo el modelo, no state_dict
+#state_dict_8bit = model.state_dict()
+safetensors.torch.save_model(model, os.path.join(path_model, "model.safetensors"))
+
+model.save_pretrained(path_model, safe_serialization=True)
 
 model.config.save_pretrained(path_model)
 

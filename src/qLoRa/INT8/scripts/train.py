@@ -13,7 +13,7 @@ from transformers import (
 )
 from trl import SFTTrainer, SFTConfig
 import argparse
-import wandb
+#import wandb
 from load_dataset import *
 import os
 
@@ -77,8 +77,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # WANDB
-    os.environ["WANDB_API_KEY"] = "9dfaae00b45401110e0e0024724781315433b031"
-    wandb.init(project="qlora-8b-8bit", name="qlora-8b-8bit-retrain")
+    #os.environ["WANDB_API_KEY"] = "9dfaae00b45401110e0e0024724781315433b031"
+    #wandb.init(project="qlora-8b-8bit", name="qlora-8b-8bit-retrain")
 
     model_chk = args.model
     model_type = args.model_type
@@ -110,8 +110,9 @@ if __name__ == "__main__":
 
     # BitsAndBytes config (8-bit)
     bnb_config = BitsAndBytesConfig(
-        load_in_8bit=True
-        # llm_int8_threshold=6.0,
+        load_in_8bit=True,
+        llm_int8_threshold=6.0,
+        llm_int8_has_fp16_weight=False
         # load_in_8bit_fp32_cpu_offload=True,
     )
 
@@ -160,10 +161,30 @@ if __name__ == "__main__":
     print(f"  Train samples: {len(formated_train):,}")
     print(f"  Dev samples: {len(formated_dev):,}")
 
+    def has_valid_text(example):
+        """Filtra textos vacíos o muy cortos"""
+        text = example.get("text", "").strip()
+        return len(text) > 20  # Ajusta threshold si quieres
+
+    print(formated_train[0])  # Verás que "text" está completo
+
+    # Filtrar + remover columnas problemáticas
+    formated_train = formated_train.filter(has_valid_text)
+    formated_train = formated_train.remove_columns(["conversations"])  # Evita ChatML auto
+
+    print(formated_train[0])  # Verás que "text" está completo
+
+    formated_dev = formated_dev.filter(has_valid_text) 
+    formated_dev = formated_dev.remove_columns(["conversations"])
+
+    print(f"Train samples after filter: {len(formated_train):,}")
+    print(f"Dev samples after filter: {len(formated_dev):,}")
+
+
     # 5) TrainingArguments + Trainer
     print("\n[4/6] Setting up trainer...")
     training_args = SFTConfig(
-        output_dir=save_path + "latxa8b_q8bit_instruct",
+        output_dir=save_path + "gemma",
         dataset_text_field="text",
         eval_strategy="epoch",
         save_strategy="epoch",
@@ -183,24 +204,27 @@ if __name__ == "__main__":
         bf16=True,
         optim="paged_adamw_8bit",
         logging_steps=1,
-        report_to="wandb",
-        max_seq_length=max_seq_length,
+        #report_to="wandb",
+        max_length=max_seq_length,
         dataset_num_proc=4,
         packing=False,
+        #formatting_func=None,
     )
 
     trainer = SFTTrainer(
         model=model,
-        tokenizer=tokenizer,
+        #tokenizer=tokenizer,
+        processing_class=tokenizer,
         args=training_args,
-        peft_config=peft_config,
+        #peft_config=peft_config,
         train_dataset=formated_train,
         eval_dataset=formated_dev,
         #dataset_text_field="text",
         #dataset_num_proc=1,
-        #max_seq_length=max_seq_length,
+        #max_length=max_seq_length,
         callbacks=[EarlyStoppingCallback(early_stopping_patience=2)],
         #packing=False,
+        
     )
 
     steps_per_epoch = len(formated_train) // (4 * 8)
@@ -228,6 +252,13 @@ if __name__ == "__main__":
     print(f"[METRICS][train] peak_train_vram_gb={peak_gb_train:.2f}")
     print(f"[METRICS][train] train_time_min={train_elapsed/60:.1f}")
     log_nvidia_smi(tag="[after_train_qlora8b]")
+
+    print("\n[6/6] Saving final model...")
+    final_model_path = os.path.join(save_path, "best_model")
+    os.makedirs(final_model_path, exist_ok=True)
+    trainer.save_model(final_model_path)
+    tokenizer.save_pretrained(final_model_path)
+    print(f"✓ Model saved to: {final_model_path}")
 
     # 7) No guardar modelo de nuevo
     model.config.use_cache = True

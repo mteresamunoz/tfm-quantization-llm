@@ -229,6 +229,14 @@ if __name__ == "__main__":
     print(f"[METRICS][train] train_time_min={train_elapsed/60:.1f}")
     log_nvidia_smi(tag="[after_train_qlora4b]")
 
+     # 7) Guardar modelo final
+    print("\n[6/6] Saving final model...")
+    final_model_path = os.path.join(save_path, "best_model")
+    os.makedirs(final_model_path, exist_ok=True)
+    trainer.save_model(final_model_path)
+    tokenizer.save_pretrained(final_model_path)
+    print(f"✓ Model saved to: {final_model_path}")
+
     # 7) No guardar modelo de nuevo (solo queremos métricas)
     model.config.use_cache = True
     print("\nFinal evaluation (for logging)...")

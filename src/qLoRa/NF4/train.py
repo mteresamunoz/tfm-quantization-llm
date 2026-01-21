@@ -167,7 +167,7 @@ if __name__ == "__main__":
     # 5) TrainingArguments + Trainer
     print("\n[4/6] Setting up trainer...")
     training_args = SFTConfig(
-        output_dir=save_path + "latxa8b_qlora_nf4",
+        output_dir=save_path + "gemma9b_qlora_nf4",
         dataset_text_field="text",
         eval_strategy="epoch",
         save_strategy="epoch",

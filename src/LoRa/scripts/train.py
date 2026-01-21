@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
     # WANDB
     os.environ["WANDB_API_KEY"] = "9dfaae00b45401110e0e0024724781315433b031"
-    wandb.init(project="lora-fp8-latxa3.1_8b", name="latxa3.1_8b-lora-fp8-retrain")
+    wandb.init(project="lora-fp8-qwen3-8b", name="qwen3-8b")
 
     model_chk = args.model
     model_type = args.model_type
@@ -218,12 +218,12 @@ if __name__ == "__main__":
     log_nvidia_smi(tag="[after_train]")
 
     # 7) Guardar modelo final
-    #print("\n[6/6] Saving final model...")
-    #final_model_path = os.path.join(save_path, "best_model")
-    #os.makedirs(final_model_path, exist_ok=True)
-    #trainer.save_model(final_model_path)
-    #tokenizer.save_pretrained(final_model_path)
-    #print(f"✓ Model saved to: {final_model_path}")
+    print("\n[6/6] Saving final model...")
+    final_model_path = os.path.join(save_path, "best_model")
+    os.makedirs(final_model_path, exist_ok=True)
+    trainer.save_model(final_model_path)
+    tokenizer.save_pretrained(final_model_path)
+    print(f"✓ Model saved to: {final_model_path}")
 
     # Evaluación final
     model.config.use_cache = True

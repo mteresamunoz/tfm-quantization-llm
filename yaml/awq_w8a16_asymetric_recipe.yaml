@@ -1,8 +1,0 @@
-quant_stage:
-  quant_modifiers:
-    AWQModifier:
-      ignore: [lm_head]
-      scheme:
-        weights: W8_ASYM
-        activations: A16_ASYM
-      targets: [Linear]
