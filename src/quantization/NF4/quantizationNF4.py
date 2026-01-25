@@ -3,7 +3,7 @@ import os
 import torch
 import safetensors.torch 
 
-model = '/gaueko1/users/mmartin/tfm-quantization-llm/models/merge/gemma'
+model = 'MODEL_TO_QUANTIZE'  
 
 bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
@@ -30,7 +30,7 @@ model = AutoModelForCausalLM.from_pretrained(
     trust_remote_code=True
 )
 
-path_model = "/gaueko1/users/mmartin/tfm-quantization-llm/models/PostQuant/NF4/gemma"
+path_model = "MODEL_NF4_OUTPUT_DIRECTORY"
 #crea carpeta si no existe
 os.makedirs(path_model, exist_ok=True)
 

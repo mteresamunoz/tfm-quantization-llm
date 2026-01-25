@@ -2,7 +2,7 @@ from safetensors import safe_open
 from safetensors.torch import save_file
 import glob, os
 
-path = "/gaueko1/users/mmartin/tfm-quantization-llm/models/merge/gemma"
+path = "PATH_TO_YOUR_MERGED_MODEL_DIRECTORY"
 shards = sorted(glob.glob(os.path.join(path, "model-*.safetensors")))
 
 for shard_path in shards:

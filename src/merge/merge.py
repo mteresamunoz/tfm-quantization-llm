@@ -2,9 +2,9 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 
 # Ruta a tu modelo base
-base_model_path = "google/gemma-2-9b"
+base_model_path = "BASE_MODEL_PATH"  # Ejemplo: "gemma-2-9b"
 # Ruta a los pesos LoRA que entrenaste
-lora_model_path = "/gaueko1/users/mmartin/tfm-quantization-llm/models/LoRa/gemma-2-9b_lora_VRAM_tiempo/best_model"
+lora_model_path = "LORA_MODEL_PATH"  # Ejemplo: "path/to/your/lora/weights"
 
 # 1. Cargar modelo base (sin cuantización)
 model = AutoModelForCausalLM.from_pretrained(
@@ -20,7 +20,7 @@ model = PeftModel.from_pretrained(model, lora_model_path)
 model = model.merge_and_unload()
 
 # 4. Guardar el modelo ya fusionado (sin LoRA, listo para cuantizar o usar)
-fusion_output_dir = "/gaueko1/users/mmartin/tfm-quantization-llm/models/merge/gemma"
+fusion_output_dir = "FUSION_OUTPUT_DIRECTORY"  # Ejemplo: "path/to/save/fused/model"
 model.save_pretrained(fusion_output_dir)
 
 # (opcional) guardar también el tokenizer

@@ -3,18 +3,10 @@
 
 import os
 import torch
-#import triton.ops --> cambiar a triton
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 import safetensors.torch #pip install safetensors
 
-#try:
-#    import triton
-#    print("Triton importado correctamente.")
-#except ImportError as e:
-#    print(f"Error al importar Triton: {e}")
-#model = "HiTZ/latxa-7b-v1.2" #1.2 --> 28GB
-#model = '/gaueko1/users/mmartin/ENVIRONMENT/latxa70b/Latxa-Llama-3.1-70B-Instruct-exp_2_101' #--> 263G 
-model = '/gaueko1/users/mmartin/tfm-quantization-llm/models/merge/gemma'
+model = 'MODEL_TO_QUANTIZE'  # Ejemplo: "path/to/your/fused/model"
 
 #config cuant 8-bit
 bnb_config_8bit = BitsAndBytesConfig(
@@ -59,7 +51,7 @@ modelq4 = AutoModelForCausalLM.from_pretrained(
 )
 
 
-path_modelq8bit = "/gaueko1/users/mmartin/tfm-quantization-llm/models/PostQuant/INT8/gemma"
+path_modelq8bit = "MODEL_Q8BIT_OUTPUT_DIRECTORY"  
 #crea carpeta si no existe
 os.makedirs(path_modelq8bit, exist_ok=True)
 #guardar modelo con safetensors
@@ -75,15 +67,9 @@ tokenizer.save_pretrained(path_modelq8bit)
 #tokenizer.config.save_pretrained(path_modelq8bit)
 print("MODELO 8BIT GUARDADO EN: ", os.listdir(path_modelq8bit))
 
-#du -sh /gaueko1/users/mmartin/maite_env/models/latxa-7b-v1.2-quantized8bit --> 6.6GB
-#du -sh /gaueko1/users/mmartin/maite_env/models/latxa-7b-v1.2-quantized4bit --> 3.9G  
-#print("Contenido de la carpeta del modelo:", os.listdir(path))
-#du -sh /gaueko1/users/mmartin/maite_env/models/latxa-70b-quantized8bit --> 68G
-#du -sh /gaueko1/users/mmartin/maite_env/models/latxa-70b-quantized4bit --> 37G
 
 
-
-path_modelq4bit = "/gaueko1/users/mmartin/tfm-quantization-llm/models/PostQuant/INT4/gemma"
+path_modelq4bit = "MODEL_Q4BIT_OUTPUT_DIRECTORY"
 os.makedirs(path_modelq4bit, exist_ok=True)
 #guardar modelo con safetensors
 #guarda pesos cuantizados y parametros entrenados pytorch
@@ -98,28 +84,3 @@ tokenizer.save_pretrained(path_modelq4bit)
 print("MODELO 4BIT GUARDADO EN: ", os.listdir(path_modelq4bit))
 
 print("TERMINADO")
-#du -sh /gaueko1/users/mmartin/maite_env/models/latxa-7b-v1.2-quantized8bit --> 6.6GB
-#du -sh /gaueko1/users/mmartin/maite_env/models/latxa-7b-v1.2-quantized4bit --> 3.9G  
-#print("Contenido de la carpeta del modelo:", os.listdir(path))
-
-#verificar en que dispositivo esta el modelo
-#print(modelq.hf_device_map)
-
-#probar
-#text = "Kimika analitikoan, zein da analisi kuantitatiboan barne estandarra erabiltzearen atzean dagoen printzipioa?\\nA. Lagin prestaketan eta tresnaren erantzunean dauden aldaerak konpentsatzen ditu.\\nB. Metodo analitikoaren sentikortasuna hobetzen du.\\nC. Metodo analitikoaren detekzio-muga murrizten du.\\nD. Kromatografian analitikoen arteko bereizmena handitzen du.\\nE. Goian aipatutakoetatik bat ere ez."
-#inputs = tokenizer(text, return_tensors="pt").to("cuda")  # Asegurar que los tensores están en GPU
-
-#with torch.no_grad():
-#    output = modelq.generate(**inputs, max_new_tokens=100)
-
-#print(tokenizer.decode(output[0], skip_special_tokens=True))
-
-#Kimika analitikoan, zein da analisi kuantitatiboan barne estandarra erabiltzearen atzean dagoen printzipioa?\nA. Lagin prestaketan eta tresnaren erantzunean dauden aldaerak konpentsatzen ditu.\nB. Metodo analitikoaren sentikortasuna hobetzen du.\nC. Metodo analitikoaren detekzio-muga murrizten du.\nD. Kromatografian analitikoen arteko bereizmena handitzen du.\nE. Goian aipatutakoetatik bat ere ez.
-
-#A. Lagin prestaketan eta tresnaren erantzunean dauden aldaerak konpentsatzen ditu.
-
-#Zein da zehaztasunaren eta errorearen arteko desberdintasuna?
-
-#Zein da zehaztasunaren eta errorearen arteko desberdintasuna?
-
-#A. Zehaztasuna analisi bate
