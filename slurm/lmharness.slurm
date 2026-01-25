@@ -1,17 +1,18 @@
 #!/bin/bash
-#SBATCH --job-name=eval_ql8qwen
+#SBATCH --job-name=evaluation_lmharness
 #SBATCH --cpus-per-task=8
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --time=24:00:00
 #SBATCH --mem=80GB
 #SBATCH --gres=gpu:1
-#SBATCH --output=/gaueko1/users/mmartin/tfm-quantization-llm/eval_lmharness/gemma/qlora_int8_eustrivia.out
-#SBATCH --error=/gaueko1/users/mmartin/tfm-quantization-llm/eval_lmharness/gemma/qlora_int8_eustrivia.err
+#SBATCH --output=logs/lm_harness/%x_%j.out
+#SBATCH --error=logs/lm_harness/%x_%j.err
 #SBATCH --mail-type=END,FAIL
-#SBATCH --mail-user=mariateresa.munoz@ehu.eus
 
-source /gaueko1/users/mmartin/ENVIRONMENT/bin/activate
+source "$(dirname "$0")/../config.sh"
+
+source ${VENV_PATH}
 
 tasks_selected=(
     "belebele_eus_Latn"
@@ -21,9 +22,10 @@ tasks_selected=(
     "eus_trivia"
 )
 
-export HF_TOKEN=YOUR_TOKEN
+export HF_TOKEN=${HF_TOKEN}
 
 num_fewshot=5
+
 for task_name in "${tasks_selected[@]}"; do
     # Set batch_size based on task
     if [[ ${task_name} == "eus_reading" || ${task_name} == "belebele_eus_Latn" || ${task_name} == "eus_exams_eu" ]]; then
@@ -31,17 +33,14 @@ for task_name in "${tasks_selected[@]}"; do
     else
         batch_size="auto:10"
     fi
-#si no deja evaluar directamente modelo, pasar pretrained=modelo base,peft=modelo lora o qlora, etc (NO DEJAR ESPACIOS), o poner llama o latxa en el nombre
-#/gaueko1/users/mmartin/ENVIRONMENT/models/Latxa_8b_loraMIO_quantized4bit
-#google/gemma-2-9b,token=$HF_TOKEN
-#${batch_size} \
+
     srun python3 -m lm_eval \
         --model hf \
-        --model_args pretrained=/gaueko1/users/mmartin/tfm-quantization-llm/models/qLoRa/INT8/gemma/best_model \
+        --model_args pretrained=${MODEL_PATH} \
         --tasks $task_name \
         --device cuda \
-        --output_path ../results/ \
-        --batch_size 1 \
+        --output_path ${RESULTS_DIR} \
+        --batch_size ${batch_size} \
         --num_fewshot ${num_fewshot} \
         --log_samples
 done

@@ -1,23 +1,28 @@
 #!/bin/bash
-#SBATCH --job-name=mem_latxa
+#SBATCH --job-name=memmory_gpu
 #SBATCH --cpus-per-task=4
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --time=00:10:00
 #SBATCH --mem=32GB
 #SBATCH --gres=gpu:1
-#SBATCH --output=/gaueko1/users/mmartin/tfm-quantization-llm/logs/memory_gpu/gemma/qlora_nf4_dq.out
-#SBATCH --error=/gaueko1/users/mmartin/tfm-quantization-llm/logs/memory_gpu/gemma/qlora_nf4_dq.err
+#SBATCH --output=logs/memory/%x_%j.out
+#SBATCH --error=logs/memory/%x_%j.err
 #SBATCH --mail-type=END,FAIL
-#SBATCH --mail-user=mariateresa.munoz@ehu.eus
 
-source /gaueko1/users/mmartin/ENVIRONMENT/bin/activate
+source "$(dirname "$0")/../config.sh"
 
-export HF_TOKEN="API_KEY"
+source ${VENV_PATH}
+
+export HF_TOKEN=${HF_TOKEN}
 
 nvidia-smi
-#si es base --> dar los base
-#si es qlora --> dar qlora, base y tipo (fp4, int8, nf4_dq)
-#si es postquant --> dar merge y tipo (int8, fp4, nf4)
-srun python /gaueko1/users/mmartin/tfm-quantization-llm/src/memory/memory_usage_qlora.py --adapter_id maytemuma/qlora_NF4_gemma_2_9b --base_id google/gemma-3-12b-it --quant_type nf4_dq
+# Usage examples:
+# - Base model: --base_id <model_id>
+# - QLoRA model: --adapter_id <adapter_id> --base_id <base_id> --quant_type <fp4|int8|nf4_dq>
+# - Post-quantized: --adapter_id <merge_id> --quant_type <int8|fp4|nf4>
 
+srun python src/memory/memory_usage_qlora.py \
+    --adapter_id ${ADAPTER_ID} \
+    --base_id ${BASE_MODEL_ID} \
+    --quant_type ${QUANT_TYPE}
