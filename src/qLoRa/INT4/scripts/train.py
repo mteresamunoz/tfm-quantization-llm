@@ -80,7 +80,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # WANDB
-    os.environ["WANDB_API_KEY"] = "9dfaae00b45401110e0e0024724781315433b031"
+    os.environ["WANDB_API_KEY"] = "API_KEY"
     wandb.init(project="qlora-8b-4bit", name="qlora-8b-4bit-retrain")
 
     model_chk = args.model
@@ -96,7 +96,7 @@ if __name__ == "__main__":
     # HYPERPARAMETERS
     bs = 24
     epochs = 5
-    max_seq_length = 512
+    max_seq_length = 1024
     wd = 0.01
 
     print("=" * 60)
@@ -111,12 +111,10 @@ if __name__ == "__main__":
     print(f"Save path (logs/checkpoints): {save_path}")
     print("=" * 60)
 
-    # BitsAndBytes config (4-bit NF4)
+    # BitsAndBytes config
     bnb_config = BitsAndBytesConfig(
         load_in_4bit=True,
-        bnb_4bit_quant_type="nf4",
         bnb_4bit_compute_dtype=torch.bfloat16,
-        bnb_4bit_use_double_quant=False,
     )
 
     # 1) Load model in 4-bit

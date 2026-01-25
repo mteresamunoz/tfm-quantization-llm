@@ -71,7 +71,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # WANDB
-    os.environ["WANDB_API_KEY"] = "9dfaae00b45401110e0e0024724781315433b031"
+    os.environ["WANDB_API_KEY"] = "API_KEY"
     wandb.init(project="lora-fp8-qwen3-8b", name="qwen3-8b")
 
     model_chk = args.model
@@ -85,7 +85,7 @@ if __name__ == "__main__":
     np.random.seed(42)
 
     epochs = 5
-    max_seq_length = 512
+    max_seq_length = 1024
     wd = 0.01
 
     print("=" * 60)

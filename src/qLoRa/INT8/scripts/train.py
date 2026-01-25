@@ -13,7 +13,7 @@ from transformers import (
 )
 from trl import SFTTrainer, SFTConfig
 import argparse
-#import wandb
+import wandb
 from load_dataset import *
 import os
 
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # WANDB
-    #os.environ["WANDB_API_KEY"] = "9dfaae00b45401110e0e0024724781315433b031"
+    #os.environ["WANDB_API_KEY"] = "API_KEY"
     #wandb.init(project="qlora-8b-8bit", name="qlora-8b-8bit-retrain")
 
     model_chk = args.model
@@ -93,7 +93,7 @@ if __name__ == "__main__":
     # HYPERPARAMETERS
     bs = 24
     epochs = 5
-    max_seq_length = 512
+    max_seq_length = 1024
     wd = 0.01
 
     print("=" * 60)
