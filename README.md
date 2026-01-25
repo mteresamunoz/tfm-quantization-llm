@@ -64,7 +64,7 @@ Ensure you have Python 3.9+ and CUDA drivers installed.
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/tfm-quantization-llm.git
+    git clone https://github.com/maytemuma/tfm-quantization-llm.git
     cd tfm-quantization-llm
     ```
 
@@ -128,3 +128,4 @@ Outputs will be saved to the `figures/` directory.
 ## Contact
 
 For questions or inquiries regarding this research, please contact the author.
+
