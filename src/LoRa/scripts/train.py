@@ -171,7 +171,7 @@ if __name__ == "__main__":
         lr_scheduler_type="cosine",
         warmup_ratio=0.05,
         bf16=True,
-        optim="adamw_torch",
+        optim="paged_adamw_8bit",
         report_to="wandb",
         dataloader_num_workers=4,
         dataloader_pin_memory=True,
